@@ -1,0 +1,23 @@
+query Podcasts {
+  podcasts {
+    id
+    title
+    slug
+    date
+    description
+    spreaker_id
+    cover {
+      url
+      width
+      height
+    }
+    tags {
+      name
+    }
+    episodes {
+      id
+      title
+      slug
+    }
+  }
+}
