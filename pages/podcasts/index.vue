@@ -26,7 +26,7 @@
       v-if="filteredList.length == 0"
     >
       <img
-        src="/images/undraw_page_not_found_su7k.png"
+        src="~/assets/images/undraw_page_not_found_su7k.png"
         height="453"
         width="800"
       />

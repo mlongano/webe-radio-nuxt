@@ -1,0 +1,26 @@
+query Episodes($slug: String!) {
+  episodes(where: {slug: $slug}) {
+    id
+    title
+    slug
+    date
+    description
+    spreaker_id
+    tags {
+      name
+    }
+    cover {
+      url
+      width
+      height
+    }
+    episode_number
+    audio {
+      url
+    }
+    podcast {
+      title
+      slug
+    }
+  }
+}

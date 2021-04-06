@@ -31,6 +31,10 @@
           to="/aboutUs"
           >Chi siamo</NuxtLink
         >
+        <button @click="changeMode" class="menu-item">
+        <div v-html="btnIcon"></div>
+      </button>
+
       </nav>
     </header>
   </client-only>
@@ -38,10 +42,11 @@
 
 <script>
 import podcastsQuery from "~/apollo/queries/podcast/podcasts";
+
 export default {
   data() {
     return {
-      title: "Hello World!"
+      title: "WeBe RADIO"
     };
   },
   head() {
@@ -50,13 +55,30 @@ export default {
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: "description",
-          name: "description",
-          content: "My custom description"
+          hid: "webe.radio",
+          name: "Webe Radio",
+          content: "La scuola che si ascolta"
         }
       ]
     };
-  }
+  },
+  computed: {
+    btnIcon() {
+      return this.$colorMode.preference === 'light' ?
+      `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      </svg>` :
+      `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+      </svg>`
+    }
+  },
+  methods: {
+    changeMode() {
+      this.$colorMode.preference =
+        this.$colorMode.value == "light" ? "dark" : "light";
+    }
+  },
 };
 </script>
 <style lang="postcss" scoped>
