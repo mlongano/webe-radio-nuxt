@@ -17,6 +17,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/styles/main.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -44,12 +45,12 @@ export default {
     '@nuxtjs/apollo',
   ],
   env: {
-    apiUri: ( process.env.NUXT_ENV_API_URI || 'http://api.webe.radio:1337')
+    apiUri: ( process.env.NUXT_ENV_API_URI || 'http://136.243.88.57:1337')
   },
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: ( process.env.NUXT_ENV_API_URI || 'http://api.webe.radio:1337' )+'/graphql'
+        httpEndpoint: ( process.env.NUXT_ENV_API_URI || 'http://136.243.88.57:1337' )+'/graphql'
       }
     }
   },
