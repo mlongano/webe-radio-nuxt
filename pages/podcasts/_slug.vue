@@ -46,14 +46,16 @@ export default {
   },
   data() {
     return {
-      podcasts: [{
-        id:"",
-    title:"",
-    slug:"",
-    date:"",
-    description:"",
-    spreaker_id:"",
-      }],
+      podcasts: [
+        {
+          id:"",
+          title:"",
+          slug:"",
+          date:"",
+          description:"",
+          spreaker_id:"",
+        }
+      ],
     };
   },
   apollo: {

@@ -5,7 +5,7 @@
         class="episode-list"
         v-for="episode in podcast.episodes"
         :key="episode.slug"
-        :to="'/episode/'+episode.slug"
+        :to="'/episodes/'+episode.slug"
       >
         <span
           class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"

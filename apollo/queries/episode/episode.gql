@@ -3,6 +3,7 @@ query Episodes($slug: String!) {
     id
     title
     slug
+    episode_number
     date
     description
     spreaker_id
@@ -14,7 +15,6 @@ query Episodes($slug: String!) {
       width
       height
     }
-    episode_number
     audio {
       url
     }

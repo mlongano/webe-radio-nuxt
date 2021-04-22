@@ -37,13 +37,19 @@ export default {
   },
    data() {
     return {
-      episodes: [],
+        episodes: [
+          {
+            id:"",
+            title:"",
+            slug:"",
+          }
+        ]
     };
   },
   apollo: {
-    episodes: {
+    data: {
       prefetch: true,
-      query: episodesQuery,
+      episodes: episodesQuery,
       variables() {
         return { slug: this.$route.params.slug };
       },
@@ -65,18 +71,12 @@ export default {
 
   computed: {
     spreakerEmbed () {
-      let page = this.$page;
-      let spreakerId = page.episode.spreaker_id;
-      let spreakerCode = '<a class="spreaker-player"  href="https://www.spreaker.com/e/'
-      + spreakerId
-      +'"data-resource="episode_key='
-      + spreakerId
-      +'" data-theme="dark" data-width="100%" data-height="200px" data-theme="light" data-playlist="false" data-playlist-continuous="false" data-autoplay="false" data-live-autoplay="false" data-chapters-image="true" data-episode-image-position="left" data-hide-logo="false" data-hide-likes="false" data-hide-comments="false" data-hide-sharing="false" data-hide-download="true">'
-      + 'Ascolta "' + page.episode.title + '" su Spreaker.'+
-      '</a>'
-      return spreakerCode;
-      },
+      let episode = this.episodes[0];
+      this.$forceUpdate();
+      return this.$spreakerEmbed(episode.spreaker_id, episode.title, "e", "200px", this.$colorMode.preference)
+    },
   },
+
   mounted() {
     let spreakerWidgets = document.createElement("script");
     spreakerWidgets.setAttribute("async", true);
