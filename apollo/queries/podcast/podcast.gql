@@ -6,6 +6,7 @@ query Podcasts($slug: String!) {
     date
     description
     spreaker_id
+    spreaker_limited
     episodes {
       id
       title

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <!-- // Link to go back to the previous page -->
-    <a class="" @click="$router.go(-1)">
-      <i class="fa fa-arrow-left"></i>Indietro
-    </a>
-
+    <BackButton />
     <ClientOnly>
       <main class="px-6">
         <h1 class="text-2xl mb-6">
@@ -19,7 +15,7 @@
             :src="$getStrapiImage(podcasts[0].cover.url)"
           />
         </div>
-        <markdown-it-vue class="text-gray-700 text-xs" :content="podcasts[0].description" />
+        <markdown-it-vue class="text-gray-700 text-3xl p-2 mt-0.5" :content="description" />
 
         <div>
           <EpisodesList :podcast="podcasts[0]" />
@@ -38,11 +34,13 @@
 import podcastsQuery from "~/apollo/queries/podcast/podcast";
 import Tags from "~/components/Tags";
 import EpisodesList from "~/components/EpisodesList";
+import BackButton from "~/components/BackButton";
 
 export default {
   components: {
     Tags,
     EpisodesList,
+    BackButton
   },
   data() {
     return {
@@ -70,20 +68,12 @@ export default {
   computed: {
     spreakerEmbed() {
       let podcast = this.podcasts[0];
-      this.$forceUpdate();
-      return this.$spreakerEmbed(podcast.spreaker_id, podcast.title, "s", "500px", this.$colorMode.preference)
+      return this.$spreakerIframe(podcast.spreaker_id, "show", "500px", this.$colorMode.preference, podcast.spreaker_limited)
     },
-  },
+    description() {
+      return this.podcasts[0].description || "";
+    },
 
-  mounted() {
-    let spreakerWidgets = document.createElement("script");
-    spreakerWidgets.setAttribute("async", true);
-    spreakerWidgets.setAttribute(
-      "src",
-      "https://widget.spreaker.com/widgets.js"
-    );
-    document.body.appendChild(spreakerWidgets);
-    this.$forceUpdate();
   },
 };
 </script>

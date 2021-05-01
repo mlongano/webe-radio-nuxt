@@ -1,11 +1,11 @@
 <template>
-  <div class="px-6 podcasts">
+  <div class="px-6">
     <!-- // Search input to filters podcasts -->
     <form class="flex justify-center items-center px-4 sm:px-6 lg:px-8">
       <div class="relative">
         <input
         class="h-14 w-96 pr-8 pl-5 rounded-full z-0 dark:text-gray-700 shadow dark:shadow-inner focus:outline-none"
-        v-model="query"
+        v-model="searchQuery"
         type="search"
         placeholder="Cerca..."
       />
@@ -13,13 +13,13 @@
       </div>
     </form>
 
+    <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-6">
     <PodcastCard
           v-for="podcast in filteredList"
           :key="podcast.id"
           :podcast="podcast"
       />
-
-
+    </section>
     <!-- // If no podcast have been found -->
     <div
       class=""
@@ -35,6 +35,14 @@
   </div>
 </template>
 
+<style lang="postcss" scoped>
+.badge {
+  @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700;
+  &:hover {
+    @apply bg-gray-300;
+  }
+}
+</style>
 <script>
 // Import the restaurants query
 import podcastsQuery from "~/apollo/queries/podcast/podcasts";
@@ -49,7 +57,7 @@ export default {
     return {
       // Initialize an empty restaurants variabkle
       podcasts: [],
-      query: "",
+      searchQuery: "",
     };
   },
   apollo: {
@@ -63,7 +71,7 @@ export default {
     // Search system
     filteredList() {
       return this.podcasts.filter((podcast) => {
-        return podcast.title.toLowerCase().includes(this.query.toLowerCase());
+        return podcast.title.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
     },
   },

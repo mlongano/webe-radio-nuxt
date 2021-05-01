@@ -1,5 +1,4 @@
 <template>
-  <ClientOnly>
     <div class="text-gray-700 dark:text-white dark:bg-gray-700 relative max-w-sm rounded overflow-hidden shadow-lg mb-6">
       <img
         alt="Cover image"
@@ -9,17 +8,16 @@
       />
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2" v-html="podcast.title" />
-        <markdown-it-vue class="text-gray-700 dark:text-gray-50 text-xs" :content="podcast.description" />
+        <markdown-it-vue class="text-gray-700 dark:text-gray-50 text-xs" :content="description" />
 
         <EpisodesList :podcast="podcast" />
         <Tags :post="podcast" />
         <NuxtLink
           class="link w-1/2 flex items-center justify-center rounded-md bg-black text-white"
-          :to="'podcasts/'+podcast.slug"
+          :to="'/podcasts/'+podcast.slug"
           >Link</NuxtLink>
       </div>
     </div>
-  </ClientOnly>
 </template>
 <style scoped>
 .link {
@@ -33,14 +31,6 @@
   text-indent: -9999px;
   z-index: 0;
 }
-.markdown-body {
-  color: white;
-}
-</style>
-<style>
-.dark .markdown-body {
-  color: white;
-}
 </style>
 <script>
 import Tags from "~/components/Tags";
@@ -52,6 +42,13 @@ export default {
     EpisodesList,
   },
   props: ["podcast"],
+  computed: {
+    // Search system
+    description() {
+      return this.podcast.description || "";
+    },
+  },
+
 };
 </script>
 
