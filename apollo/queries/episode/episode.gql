@@ -7,6 +7,7 @@ query Episodes($slug: String!) {
     date
     description
     spreaker_id
+    spreaker_limited
     tags {
       name
     }

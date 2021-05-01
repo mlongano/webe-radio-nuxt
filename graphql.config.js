@@ -4,7 +4,7 @@ module.exports = {
             extensions: {
                 endpoints: {
                     default: {
-                        url: "http://api.webe.radio:1337/graphql"
+                        url: "http://api.webe.radio:1338/graphql",
                     }
                 }
             }

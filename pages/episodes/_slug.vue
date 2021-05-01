@@ -1,21 +1,21 @@
 <template>
-  <Layout>
-    <ClientOnly>
-      <main class="px-6">
+      <main class="px-6" >
+        <BackButton />
+
         <h1 class="text-2xl mb-6">
           {{ episodes[0].title }}
         </h1>
 
         <div>
-          <g-image
+          <img
             class="shadow-lg rounded-lg"
             alt="Cover image"
             v-if="episodes[0].cover"
-            :src="episodes[0].cover.url"
+            :src="$getStrapiImage(episodes[0].cover.url)"
           />
         </div>
 
-        <markdown-it-vue class="text-gray-700 text-xs" :content="episodes[0].description" />
+        <markdown-it-vue class="text-gray-700 text-4xl mt-10" :content="description" />
 
         <div class="">
           <Tags :post="episodes[0]" />
@@ -23,33 +23,26 @@
 
         <div v-html="spreakerEmbed" />
       </main>
-    </ClientOnly>
-  </Layout>
 </template>
-
 <script>
 import episodesQuery from "~/apollo/queries/episode/episode";
 import Tags from "~/components/Tags";
+import BackButton from "~/components/BackButton";
 
 export default {
   components: {
     Tags,
+    BackButton
   },
    data() {
     return {
-        episodes: [
-          {
-            id:"",
-            title:"",
-            slug:"",
-          }
-        ]
+        episodes: [{}]
     };
   },
   apollo: {
-    data: {
+    episodes: {
       prefetch: true,
-      episodes: episodesQuery,
+      query: episodesQuery,
       variables() {
         return { slug: this.$route.params.slug };
       },
@@ -63,29 +56,27 @@ export default {
         {
           hid: this.episodes[0].slug,
           name: "description",
-          content: this.episodes[0].description,
+          content: this.episodes[0].description || "",
         }
       ]
     };
   },
 
   computed: {
+    ep () {
+      return this.episodes;
+    },
     spreakerEmbed () {
       let episode = this.episodes[0];
-      this.$forceUpdate();
-      return this.$spreakerEmbed(episode.spreaker_id, episode.title, "e", "200px", this.$colorMode.preference)
+      let iframe = this.$spreakerIframe(episode.spreaker_id, "episode", "200px", this.$colorMode.preference, episode.spreaker_limited);
+      return iframe;
     },
+    description() {
+      return this.episodes[0].description || "";
+    },
+
+
   },
 
-  mounted() {
-    let spreakerWidgets = document.createElement("script");
-    spreakerWidgets.setAttribute("async", true);
-    spreakerWidgets.setAttribute(
-      "src",
-      "https://widget.spreaker.com/widgets.js"
-    );
-    document.body.appendChild(spreakerWidgets);
-    console.log("Spreaker mounted");
-  },
 };
 </script>

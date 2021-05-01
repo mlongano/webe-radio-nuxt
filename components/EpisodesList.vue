@@ -8,7 +8,7 @@
         :to="'/episodes/'+episode.slug"
       >
         <span
-          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          class="inline-block text-white dark:text-white dark:bg-indigo-900 bg-blue-600 rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2"
           >{{ episode.title }}</span
         >
       </NuxtLink>
