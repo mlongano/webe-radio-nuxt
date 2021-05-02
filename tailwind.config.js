@@ -16,7 +16,7 @@ module.exports = {
   variants: {
     extend: {},
     backgroundColor: [ "dark", "dark-hover", "dark-group-hover", "dark-even", "dark-odd", "hover", "responsive" ],
-    borderColor: [ "dark", "dark-focus", "dark-focus-within", "hover", "responsive" ],
+    borderColor: [ "dark", "dark-hover", "dark-focus", "dark-focus-within", "hover", "responsive" ],
     textColor: [ "dark", "dark-hover", "dark-active", "hover", "responsive" ],
     // Control the shadows on dark mode to invert colors
     boxShadow: [ 'responsive', 'group-hover', 'focus-within', 'hover', 'focus', 'dark' ],
