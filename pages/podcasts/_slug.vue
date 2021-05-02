@@ -1,8 +1,7 @@
 <template>
-  <div>
+  <div class="px-6">
     <BackButton />
-    <ClientOnly>
-      <main class="px-6">
+      <main>
         <h1 class="text-2xl mb-6">
           {{ podcasts[0].title }}
         </h1>
@@ -26,7 +25,6 @@
 
         <div v-html="spreakerEmbed" />
       </main>
-    </ClientOnly>
   </div>
 </template>
 
