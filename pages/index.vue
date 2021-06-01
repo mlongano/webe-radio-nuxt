@@ -4,7 +4,6 @@
       <h1 class="text-2xl font-semibold">WeBe Radio</h1>
 
       <h2>Benvenuti su WeBe Radio</h2>
-      <h2 class="p-6 text-2xl font-bold text-red-900 bg-gray-800 bg-opacity-80">NB i contenuti della sezione "Podcasts" NON sono di <i>Webe Radio</i> ma presi da <i>Spreaker</i> per scopo di testing del sito!</h2>
         <div class="w-9/12 mx-auto mt-10">
             <div class="mb-2 max-w-screen-sm mx-auto">
                 <div class="aspect-w-16 aspect-h-9 shadow-xl">
