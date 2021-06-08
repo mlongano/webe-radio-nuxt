@@ -45,12 +45,12 @@ export default {
     '@nuxtjs/apollo',
   ],
   env: {
-    apiUri: ( process.env.NUXT_ENV_API_URI || 'http://localhost:1337')
+    apiUri: ( process.env.NUXT_ENV_API_URI || 'https://api.webe.radio')
   },
   apollo: {
     clientConfigs: {
       default: {
-        httpEndpoint: ( process.env.NUXT_ENV_API_URI || 'http://localhost:1337' )+'/graphql'
+        httpEndpoint: ( process.env.NUXT_ENV_API_URI || 'https://api.webe.radio' )+'/graphql'
       }
     }
   },
