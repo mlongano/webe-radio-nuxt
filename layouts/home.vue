@@ -17,6 +17,9 @@ export default {
 </script>
 <style>
 .home-cover {
-  background-image: url(~/assets/images/jason-rosewell-ASKeuOZqhYU-unsplash.jpg);
+  background-image: url(~/assets/images/home.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 </style>

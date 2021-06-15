@@ -1,7 +1,6 @@
 <template>
   <div>
     <main class="px-6">
-      <h1 class="text-2xl font-semibold">WeBe Radio</h1>
 
       <h2>Benvenuti su WeBe Radio</h2>
       <div class="w-9/12 mx-auto mt-10">

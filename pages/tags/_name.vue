@@ -7,7 +7,7 @@
       <form class="flex justify-center items-center px-4 sm:px-6 lg:px-8">
         <div class="relative">
           <input
-            class="h-14 w-96 pr-8 pl-5 rounded-full z-0 dark:text-gray-700 shadow dark:shadow-inner focus:outline-none"
+            class="h-14  w-72 lg:w-96 pr-8 pl-5 rounded-full z-0 dark:text-gray-700 shadow dark:shadow-inner focus:outline-none"
             v-model="searchQuery"
             type="search"
             placeholder="Cerca..."
