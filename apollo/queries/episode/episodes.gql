@@ -1,0 +1,32 @@
+query Episodes  ($school: String!) {
+  episodes (limit:1, where:{podcast:{school: {slug :$school}}}, sort: "date:desc") {
+    id
+    title
+    slug
+    episode_number
+    date
+    description
+    spreaker_id
+    spreaker_limited
+    tags {
+      name
+    }
+    cover {
+      url
+      width
+      height
+    }
+    audio {
+      url
+    }
+    podcast {
+      title
+      slug
+      school {
+        name
+        short_name
+        slug
+      }
+    }
+  }
+  }
