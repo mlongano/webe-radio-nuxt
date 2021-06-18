@@ -52,7 +52,12 @@
         alt="airpods"
         width="80px"
         height="80px" />
-
+       <div class="mx-auto">
+         <p>La voce della radio</p>
+      <av-waveform
+      audio-src="https://www.voicebookradio.com/audio/programmi/2103-la-voce-della-radio/210609-la-voce-della-radio-marconi-rovereto-rosa-bianca.mp3"
+      ></av-waveform>
+      </div>
       <div class="mx-auto w-4/5 text-2xl  font-medium">
         <h2 class="text-4xl mb-6">Il progetto</h2>
 
@@ -168,5 +173,8 @@ div >>> iframe {
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+div >>> iframe {
+  background-color: #a78bfa;
 }
 </style>

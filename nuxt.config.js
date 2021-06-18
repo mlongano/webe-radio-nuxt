@@ -23,6 +23,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/markdown-it-vue.js', ssr: false },
+    { src: '~/plugins/audio-visual.js', ssr: false },
     '~/plugins/utils.js',
   ],
 
