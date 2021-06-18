@@ -3,13 +3,18 @@
     class="flex flex-row flex-wrap justify-between items-begins lg:items-left lg:space-x-4 py-6 px-6 relative"
   >
     <NuxtLink class="" to="/">
-      <img
+    <img v-if="isDarkTheme"
         class="mr-5"
-        src="~/assets/images/logo.png"
+        src="~/assets/images/logoWhite.png"
         alt="Logo"
-        width="50px"
-        style="height: 50px"
-      />
+        width="80px"
+        style="height: 50px" />
+    <img v-else
+        class="mr-5"
+        src="~/assets/images/logoBlack.png"
+        alt="Logo"
+        width="80px"
+        style="height: 50px" />
     </NuxtLink>
 
     <!-- Hamburger -->
@@ -77,6 +82,10 @@ export default {
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
       </svg>`;
     },
+    isDarkTheme() {
+          if (typeof this.$colorMode.preference === 'undefined') return false;
+          return this.$colorMode.preference === "dark"
+      },
     hamburgerIcon() {
       return this.$colorMode.preference === "light"
         ? `<svg

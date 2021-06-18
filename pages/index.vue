@@ -1,119 +1,102 @@
 <template>
   <div>
-    <main class="px-6">
-
-      <h2>Benvenuti su WeBe Radio</h2>
-      <div class="w-9/12 mx-auto mt-10">
-        <div class="flex flex-row flex-wrap">
-          <div class="mb-2 w-1/2">
-            <div class="aspect-w-16 aspect-h-9 shadow-xl mr-1.5">
-
-          <div class="qtmplayer-trackitem qtmplayer-donut">
-					<span data-qtmplayer-cover="https://www.voicebookradio.com/wp-content/uploads/2021/06/marconi-370x370.jpeg" data-qtmplayer-file="https://www.voicebookradio.com/audio/programmi/2103-la-voce-della-radio/210609-la-voce-della-radio-marconi-rovereto-rosa-bianca.mp3" data-qtmplayer-title="LA VOCE DELLA RADIO G.MARCONI 9/06/21" data-qtmplayer-artist="scuole" data-qtmplayer-link="https://www.voicebookradio.com/podcast/la-voce-della-radio-g-marconi-9-06-21/" data-qtmplayer-icon="download" class="qtmplayer-play qtmplayer-link-sec qtmplayer-play-btn qtmplayer-play-v2">
-						<i class="material-icons">play_arrow</i>
-					</span>
-				</div>
-
-
-          </div>
-          </div>
-          <div class="mb-2 w-1/2">
-            <div class="aspect-w-16 aspect-h-9 shadow-xl mr-1.5">
-
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/eI7DN3scviQ?controls=0&showinfo=0&rel=0&autoplay=0&loop=1&playlist=PL_MtOuQ1lY4RKzEg-hRVWlgTbEXHGDrgm"
-              frameborder="0"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
-            </div>
-          </div>
-        </div>
-        <div class="flex flex-row flex-wrap">
-          <div class="mb-2 w-1/2">
-            <div class="aspect-w-16 aspect-h-9 shadow-xl mr-1.5">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/-WQlSXFlYLw?controls=0&showinfo=0&rel=0&autoplay=0&loop=1&playlist=PL_MtOuQ1lY4RKzEg-hRVWlgTbEXHGDrgm"
-                frameborder="0"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
-          <div class="mb-2 w-1/2">
-            <div class="aspect-w-16 aspect-h-9 shadow-xl ml-1.5">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/mHZ74rH4stg?controls=0&showinfo=0&rel=0&autoplay=0&loop=1&playlist=PL_MtOuQ1lY4RKzEg-hRVWlgTbEXHGDrgm"
-                frameborder="0"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </div>
-          </div>
-        </div>
-        <div
-          class="
-            bg-black bg-opacity-70
-            text-white
-            px-4
-            py-4
-            text-justify
-            shadow-xl
-          "
-        >
-          <h1 class="text-3xl font-bold text-left">Kick off WeBe Radio</h1>
-          <p>
-            Il progetto <b>WeBe RADIO</b> mira alla realizzazione di una web
-            radio, costituita e gestita da una rete di scuole distribuite sul
-            territorio provinciale, e precisamente:
-          </p>
-          <ul class="list-disc list-inside">
-            <li>
-              l’Istituto Tecnico Tecnologico &quot;<b>Marconi</b>&quot; di
-              Rovereto (capofila),
-            </li>
-            <li>
-              Istituto Tecnico Economico &quot;<b>A. Tambosi</b>&quot; di Trento
-              e Istituto di Istruzione &quot;
-            </li>
-            <li>&quot;<b>La Rosa Bianca</b>&quot; di Cavalese/Predazzo.</li>
-          </ul>
-
-          <p>
-            ogni istituto costituisce una redazione autonoma con dispositivi
-            propri di trasmissione coordinati da una regia in un unico
-            palinsesto. Nasce come forma di didattica sperimentale e innovativa
-            tesa al coinvolgimento diretto e motivazionale dei giovani: uno
-            strumento poliedrico e multidisciplinare che permette di allenare
-            competenze sia tecniche che comunicative.
-          </p>
-        </div>
-      </div>
-    </main>
-
-    <footer
+    <main
       class="
-        px-6
-        footer
-        bottom-0
-        pb-10
-        text-sm text-gray-300
-        border-b-8 border-red-800
-        w-screen
+        min-h-full
+        pt-8
+        pb-8
+        bg-gradient-to-br
+        dark:from-purple-800
+        dark:to-purple-400
+        from-purple-400
+        to-purple-100;
       "
     >
-      <span
-        >Photo by
-        <a
-          href="https://unsplash.com/@jasonrosewell?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
-          >Jason Rosewell</a
+      <div class="relative">
+        <img
+          class="z-10 relative top-0"
+          src="~/assets/images/ragazza-cuffie-microfono-sorride.png"
+          alt=""
+          srcset=""
+        />
+        <div
+          class="
+            z-0
+            absolute
+            font-montserrat
+            text-5xl
+            md:text-7xl
+            top-0
+            left-1/2
+            md:left-1/2
+            lg:top-0
+            lg:text-9xl
+          "
         >
-        on
-        <a
-          href="https://unsplash.com/@jasonrosewell?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText"
-          >Unsplash</a
-        ></span
-      >
+          <h1 class="font-bold text-5xl md:text-7xl lg:text-9xl">WeBe</h1>
+          <h2 class="font-extralight text-5xl md:text-7xl lg:text-9xl">Radio</h2>
+        </div>
+      </div>
+      <div class="w-11/12 m-auto" v-html="spreakerEmbed" />
+    </main>
+    <footer class="mt-36">
+    <img v-if="isDarkTheme"
+        class="mx-auto mb-36"
+        src="~/assets/images/airpodsWhite.png"
+        alt="airpods"
+        width="80px"
+        height="80px" />
+    <img v-else
+        class="mx-auto mb-36"
+        src="~/assets/images/airpodsBlack.png"
+        alt="airpods"
+        width="80px"
+        height="80px" />
+
+      <div class="mx-auto w-4/5 text-2xl  font-medium">
+        <h2 class="text-4xl mb-6">Il progetto</h2>
+
+        <p class="mb-6">
+          WeBe RADIO mira alla realizzazione di una web radio, costituita e gestita
+          da una rete di scuole distribuite sul territorio provinciale, e
+          precisamente dall’:
+        </p>
+
+        <ul class="mb-6">
+          <li>Tecnico Tecnologico "Marconi" di Rovereto (capofila)</li>
+          <li>Istituto Tecnico Economico "A. Tambosi" di Trento</li>
+          <li>Istituto di Istruzione "La Rosa Bianca" di Cavalese/Predazzo.</li>
+        </ul>
+        <p class="mb-36">
+          Ogni istituto costituisce una redazione autonoma con dispositivi
+          propri di trasmissione coordinati da una regia in un unico palinsesto.
+          Nasce come forma di didattica sperimentale e innovativa tesa al
+          coinvolgimento diretto e motivazionale dei giovani: uno strumento
+          poliedrico e multidisciplinare che permette di allenare competenze sia
+          tecniche che comunicative.
+        </p>
+      </div>
+      <div class="relative">
+        <h2 class="uppercase text-2xl font-bold text-center mb-3">Le scuole</h2>
+        <hr class="border-gray-800 bg-gray-800 dark:bg-gray-50 dark:border-gray-50 border-solid h-2 w-2/3 mx-auto rounded-lg mb-6">
+        <div class="flex flex-row flex-wrap justify-around gap-3">
+          <img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi">
+          <img src="~/assets/images/larosabiancaQuadrato.jpg" alt="La Rosa Bianca">
+          <img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi">
+        </div>
+        <img v-if="isDarkTheme"
+            class="mx-auto mt-4 mb-4"
+            src="~/assets/images/loghiBgBlack.png"
+            alt="loghi"
+             />
+        <img v-else
+            class="mx-auto bottom-4"
+            src="~/assets/images/loghiBgWhite.png"
+            alt="loghi"
+
+            />
+
+      </div>
     </footer>
   </div>
 </template>
@@ -121,6 +104,7 @@
 <script>
 // Import the restaurants query
 import homepageQuery from "~/apollo/queries/single/homepage";
+import lastSchoolEpisodeQuery from "~/apollo/queries/episode/lastSchoolEpisode";
 
 export default {
   layout: "home",
@@ -128,6 +112,7 @@ export default {
     return {
       // Initialize an empty restaurants variabkle
       homepage: {},
+      episodes: {},
     };
   },
   apollo: {
@@ -135,11 +120,34 @@ export default {
       prefetch: true,
       query: homepageQuery,
     },
+    episodes: {
+      prefetch: true,
+      query: lastSchoolEpisodeQuery,
+      variables() {
+        return { school: "itt-marconi" };
+      },
+    },
   },
   computed: {
     // Search system
     filteredList() {
       return "";
+    },
+    isDarkTheme() {
+      if (typeof this.$colorMode.preference === 'undefined') return false;
+      return this.$colorMode.preference === "dark"
+  },
+
+    spreakerEmbed() {
+      let episode = this.episodes[0];
+      let iframe = this.$spreakerIframe(
+        episode.spreaker_id,
+        "episode",
+        "200px",
+        this.$colorMode.preference,
+        episode.spreaker_limited
+      );
+      return iframe;
     },
   },
 };
@@ -151,5 +159,14 @@ export default {
   &:hover {
     @apply bg-gray-300;
   }
+}
+
+div >>> iframe {
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 </style>
