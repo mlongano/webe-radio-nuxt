@@ -52,12 +52,16 @@
         alt="airpods"
         width="80px"
         height="80px" />
-       <div class="mx-auto">
-         <p>La voce della radio</p>
-      <av-waveform
-      audio-src="https://www.voicebookradio.com/audio/programmi/2103-la-voce-della-radio/210609-la-voce-della-radio-marconi-rovereto-rosa-bianca.mp3"
-      ></av-waveform>
-      </div>
+
+<vue-plyr>
+  <audio controls crossorigin playsinline>
+    <source
+        :src="$getStrapiImage(episodes[0].audio.url)"
+        type="audio/mp3"
+    />
+  </audio>
+</vue-plyr>
+
       <div class="mx-auto w-4/5 text-2xl  font-medium">
         <h2 class="text-4xl mb-6">Il progetto</h2>
 
@@ -164,6 +168,10 @@ export default {
   &:hover {
     @apply bg-gray-300;
   }
+}
+
+audio {
+  margin: auto;
 }
 
 div >>> iframe {

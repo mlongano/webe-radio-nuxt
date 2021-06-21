@@ -16,7 +16,8 @@
     "install": "^0.13.0",
     "markdown-it-vue": "^1.1.6",
     "nuxt": "^2.15.3",
-    "vue-audio-visual": "^2.2.2"
+    "vue-audio-visual": "^2.2.2",
+    "vue-plyr": "^7.0.0"
   },
   "devDependencies": {
     "@nuxtjs/color-mode": "^2.0.5",
