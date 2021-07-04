@@ -87,9 +87,9 @@ export default {
           return this.$colorMode.preference === "dark"
       },
     hamburgerIcon() {
-      return this.$colorMode.preference === "light"
+      return this.$colorMode.preference === "dark"
         ? `<svg
-          class="fill-current text-gray-900"
+          class="fill-current text-gray-50"
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
@@ -99,7 +99,7 @@ export default {
           <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
         </svg>`
         : `<svg
-          class="fill-current text-gray-50"
+          class="fill-current text-gray-900"
           xmlns="http://www.w3.org/2000/svg"
           width="20"
           height="20"
