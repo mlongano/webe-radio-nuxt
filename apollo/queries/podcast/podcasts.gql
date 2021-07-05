@@ -18,7 +18,7 @@ query Podcasts {
     tags {
       name
     }
-    episodes {
+    episodes (sort: "date:desc") {
       id
       title
       slug

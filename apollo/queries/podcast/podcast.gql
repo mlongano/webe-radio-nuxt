@@ -7,13 +7,16 @@ query Podcasts($slug: String!) {
     description
     spreaker_id
     spreaker_limited
-    episodes {
+    episodes (sort: "date:desc") {
       id
       title
       description
       slug
       episode_number
       cover {
+        url
+      }
+      audio {
         url
       }
     }

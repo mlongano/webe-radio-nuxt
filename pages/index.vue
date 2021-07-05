@@ -34,44 +34,41 @@
           "
         >
           <h1 class="font-bold text-5xl md:text-7xl lg:text-9xl">WeBe</h1>
-          <h2 class="font-extralight text-5xl md:text-7xl lg:text-9xl">Radio</h2>
+          <h2 class="font-extralight text-5xl md:text-7xl lg:text-9xl">
+            Radio
+          </h2>
         </div>
       </div>
       <div class="w-11/12 m-auto" v-html="spreakerEmbed" />
     </main>
     <footer class="mt-36">
-    <img v-if="isDarkTheme"
+      <img
+        v-if="isDarkTheme"
         class="mx-auto mb-36"
         src="~/assets/images/airpodsWhite.png"
         alt="airpods"
         width="80px"
-        height="80px" />
-    <img v-else
+        height="80px"
+      />
+      <img
+        v-else
         class="mx-auto mb-36"
         src="~/assets/images/airpodsBlack.png"
         alt="airpods"
         width="80px"
-        height="80px" />
+        height="80px"
+      />
 
-<vue-plyr>
-  <audio controls crossorigin playsinline>
-    <source
-        :src="$getStrapiImage(episodes[0].audio.url)"
-        type="audio/mp3"
-    />
-  </audio>
-</vue-plyr>
-
-      <div class="mx-auto w-4/5 text-2xl  font-medium">
+      <div class="mx-auto w-4/5 text-2xl font-medium">
         <h2 class="text-4xl mb-6">Il progetto</h2>
 
         <p class="mb-6">
-          WeBe RADIO mira alla realizzazione di una web radio, costituita e gestita
-          da una rete di scuole distribuite sul territorio provinciale, e
-          precisamente dall’:
+          WeBe RADIO mira alla realizzazione di una web radio, costituita e
+          gestita da una rete di scuole distribuite sul territorio provinciale,
+          e precisamente dalle seguenti scuole:
         </p>
 
-        <ul class="mb-6">
+        <ul class="mb-6 list-disc list-inside">
           <li>Tecnico Tecnologico "Marconi" di Rovereto (capofila)</li>
           <li>Istituto Tecnico Economico "A. Tambosi" di Trento</li>
           <li>Istituto di Istruzione "La Rosa Bianca" di Cavalese/Predazzo.</li>
@@ -87,24 +84,40 @@
       </div>
       <div class="relative">
         <h2 class="uppercase text-2xl font-bold text-center mb-3">Le scuole</h2>
-        <hr class="border-gray-800 bg-gray-800 dark:bg-gray-50 dark:border-gray-50 border-solid h-2 w-2/3 mx-auto rounded-lg mb-6">
+        <hr
+          class="
+            border-gray-800
+            bg-gray-800
+            dark:bg-gray-50
+            dark:border-gray-50
+            border-solid
+            h-2
+            w-2/3
+            mx-auto
+            rounded-lg
+            mb-6
+          "
+        />
         <div class="flex flex-row flex-wrap justify-around gap-3">
-          <img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi">
-          <img src="~/assets/images/larosabiancaQuadrato.jpg" alt="La Rosa Bianca">
-          <img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi">
+          <a href="https://www.marconirovereto.it"><img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi" /></a>
+          <a href="https://www.rosabianca.tn.it/"><img
+            src="~/assets/images/larosabiancaQuadrato.jpg"
+            alt="La Rosa Bianca"
+          /></a>
+          <a href="https://tambosi.tn.it/"><img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" /></a>
         </div>
-        <img v-if="isDarkTheme"
-            class="mx-auto mt-4 mb-4"
-            src="~/assets/images/loghiBgBlack.png"
-            alt="loghi"
-             />
-        <img v-else
-            class="mx-auto bottom-4"
-            src="~/assets/images/loghiBgWhite.png"
-            alt="loghi"
-
-            />
-
+        <img
+          v-if="isDarkTheme"
+          class="mx-auto mt-4 mb-4"
+          src="~/assets/images/loghiBgBlack.png"
+          alt="loghi"
+        />
+        <img
+          v-else
+          class="mx-auto bottom-4"
+          src="~/assets/images/loghiBgWhite.png"
+          alt="loghi"
+        />
       </div>
     </footer>
   </div>
@@ -143,20 +156,42 @@ export default {
       return "";
     },
     isDarkTheme() {
-      if (typeof this.$colorMode.preference === 'undefined') return false;
-      return this.$colorMode.preference === "dark"
-  },
+      if (typeof this.$colorMode.preference === "undefined") return false;
+      return this.$colorMode.preference === "dark";
+    },
+    audioPlayer() {
+      let episode = this.episodes[0];
+      if (episode.audio?.url) {
+        let audio = `<vue-plyr options='{"title":"pippo"}'>
+                      <audio controls crossorigin playsinline class="w-full rounded-xl">
+                        <source
+                            src="${this.$getStrapiImage(episode.audio.url)}"
+                            type="audio/mp3"
+                        />
+                      </audio>
+                    </vue-plyr>`;
+        let title=`<h2>${episode.title}</h2>`;
+        let img=`<img class="rounded-xl" src="${this.$getStrapiImage(episode.cover.url)}" width="200">`;
+        return audio+title+img;
+      }
+      return "";
+    },
 
     spreakerEmbed() {
       let episode = this.episodes[0];
-      let iframe = this.$spreakerIframe(
-        episode.spreaker_id,
-        "episode",
-        "200px",
-        this.$colorMode.preference,
-        episode.spreaker_limited
-      );
-      return iframe;
+      if (episode.spreaker_id) {
+        let iframe = this.$spreakerIframe(
+          episode.spreaker_id,
+          "episode",
+          "200px",
+          this.$colorMode.preference,
+          episode.spreaker_limited
+        );
+        return iframe;
+      } else if (episode.audio?.url) {
+        this.audioPlayer();
+      };
+      return "";
     },
   },
 };
