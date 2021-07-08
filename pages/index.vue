@@ -40,6 +40,7 @@
         </div>
       </div>
       <div class="w-11/12 m-auto" v-html="spreakerEmbed" />
+      <EpisodesAudio v-if="spreakerEmbed === ''" :episodes="episodes" />
     </main>
     <footer class="mt-36">
       <img
@@ -127,9 +128,15 @@
 // Import the restaurants query
 import homepageQuery from "~/apollo/queries/single/homepage";
 import lastSchoolEpisodeQuery from "~/apollo/queries/episode/lastSchoolEpisode";
+import EpisodesAudio from "~/components/EpisodesAudio.vue";
+
 
 export default {
   layout: "home",
+  components: {
+    EpisodesAudio,
+  },
+
   data() {
     return {
       // Initialize an empty restaurants variabkle

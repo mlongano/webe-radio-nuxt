@@ -22,17 +22,20 @@
         </div>
 
         <div v-html="spreakerEmbed" />
+      <EpisodesAudio v-if="spreakerEmbed === ''" :episodes="episodes" />
       </main>
 </template>
 <script>
 import episodesQuery from "~/apollo/queries/episode/episode";
 import Tags from "~/components/Tags";
 import BackButton from "~/components/BackButton";
+import EpisodesAudio from "~/components/EpisodesAudio.vue";
 
 export default {
   components: {
     Tags,
-    BackButton
+    BackButton,
+    EpisodesAudio,
   },
    data() {
     return {
@@ -68,8 +71,16 @@ export default {
     },
     spreakerEmbed () {
       let episode = this.episodes[0];
-      let iframe = this.$spreakerIframe(episode.spreaker_id, "episode", "200px", this.$colorMode.preference, episode.spreaker_limited);
-      return iframe;
+      if (episode.spreaker_id) {
+        return this.$spreakerIframe(
+          episode.spreaker_id,
+          "episode",
+          "200px",
+          this.$colorMode.preference,
+          episode.spreaker_limited
+        );
+      }
+      return "";
     },
     description() {
       return this.episodes[0].description || "";
