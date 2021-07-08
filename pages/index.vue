@@ -163,8 +163,7 @@ export default {
       return "";
     },
     isDarkTheme() {
-      if (typeof this.$colorMode.preference === "undefined") return false;
-      return this.$colorMode.preference === "dark";
+      return this.$colorMode.value === "dark";
     },
     audioPlayer() {
       let episode = this.episodes[0];
@@ -191,7 +190,7 @@ export default {
           episode.spreaker_id,
           "episode",
           "200px",
-          this.$colorMode.preference,
+          this.$colorMode.value,
           episode.spreaker_limited
         );
         return iframe;

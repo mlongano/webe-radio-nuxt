@@ -4,7 +4,7 @@
   >
     <NuxtLink class="" to="/">
 
-    <div v-if="$colorMode.preference === 'light'">
+    <div v-if="$colorMode.value === 'light'">
       <img
         class="mr-5"
         src="~/assets/images/logoBlack.png"
@@ -12,7 +12,7 @@
         width="80px"
         style="height: 50px" />
     </div>
-    <div v-if="$colorMode.preference === 'dark'">
+    <div v-if="$colorMode.value === 'dark'">
       <img
         class="mr-5"
         src="~/assets/images/logoWhite.png"
@@ -79,7 +79,7 @@ export default {
   },
   computed: {
     themeIcon() {
-      return this.$colorMode.preference === "light"
+      return this.$colorMode.value === "light"
         ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
       </svg>`
@@ -88,7 +88,7 @@ export default {
       </svg>`;
     },
     logo() {
-          return this.$colorMode.preference === "dark"
+          return this.$colorMode.value === "dark"
         ? `<img
         class="mr-5"
         src="_nuxt/assets/images/logoWhite.png"
@@ -104,7 +104,7 @@ export default {
 
     },
     hamburgerIcon() {
-      return this.$colorMode.preference === "dark"
+      return this.$colorMode.value === "dark"
         ? `<svg
           class="fill-current text-gray-50"
           xmlns="http://www.w3.org/2000/svg"

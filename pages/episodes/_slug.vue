@@ -76,7 +76,7 @@ export default {
           episode.spreaker_id,
           "episode",
           "200px",
-          this.$colorMode.preference,
+          this.$colorMode.value,
           episode.spreaker_limited
         );
       }

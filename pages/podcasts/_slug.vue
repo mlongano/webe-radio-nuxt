@@ -74,7 +74,7 @@ export default {
           podcast.spreaker_id,
           "show",
           "500px",
-          this.$colorMode.preference,
+          this.$colorMode.value,
           podcast.spreaker_limited
         );
       }
