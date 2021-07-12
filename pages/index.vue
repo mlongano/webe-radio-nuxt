@@ -127,7 +127,7 @@
 <script>
 // Import the restaurants query
 import homepageQuery from "~/apollo/queries/single/homepage";
-import lastSchoolEpisodeQuery from "~/apollo/queries/episode/lastSchoolEpisode";
+import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
 import EpisodesAudio from "~/components/EpisodesAudio.vue";
 
 
@@ -151,9 +151,9 @@ export default {
     },
     episodes: {
       prefetch: true,
-      query: lastSchoolEpisodeQuery,
+      query: lastEpisodesQuery,
       variables() {
-        return { school: "itt-marconi" };
+        return { limit: 1 };
       },
     },
   },
