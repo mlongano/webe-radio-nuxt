@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="px-6 w-8/12 mx-auto flex flex-row mic">
-    <div class="wrapper overflow-visible">
+    <div class="pl-8 md:pl-32 lg:pl-60 mx-auto flex flex-row mic">
+    <div class="wrapper pt-20 overflow-visible">
       <div>
         <h2 class="mission">Mission</h2>
         <div class="flex flex-row items-center gap-8">
@@ -110,9 +110,11 @@
       </div>
       <div class="wrapper overflow-visible">
       <img
-        class="h-screen w-screen"
-        src="~/assets/images/cuffie-filo-bianche.png"
-        1alt="Cuffiette"
+        class="-ml-44"
+        :src="cuffie()"
+        alt="Cuffiette"
+        width="509px"
+        height="2204px"
       />
       </div>
     </div>
@@ -131,6 +133,11 @@
   </div>
 </template>
 <style lang="postcss" scoped>
+.wrapper {
+  min-width: 249px;
+  overflow: visible;
+}
+
 h2,
 h3 {
   @apply text-3xl font-bold mt-6;
@@ -193,5 +200,13 @@ export default {
       return this.$colorMode.value === "dark";
     },
   },
+  methods: {
+    cuffie() {
+      return this.$colorMode.value === "dark"
+        ? require("~/assets/images/cuffie-filo-bianche.png")
+        : require("~/assets/images/cuffie-filo-nere.png");
+    },
+
+  }
 };
 </script>
