@@ -8,8 +8,9 @@
       />
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2" v-html="podcast.title" />
+        <client-only>
         <markdown-it-vue class="text-gray-700 dark:text-gray-50 text-xs" :content="description" />
-        <a v-bind:href="google">Google Podcasts</a>
+        </client-only>
         <EpisodesList :podcast="podcast" />
         <Tags :post="podcast" />
         <NuxtLink
@@ -47,9 +48,6 @@ export default {
     description() {
       return this.podcast.description || "";
     },
-    google() {
-      return this.podcast.distribution?.google?.url || "";
-    }
   },
 
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header />
+    <Header :key="componentKey"/>
     <Nuxt />
   </div>
 </template>
@@ -10,8 +10,21 @@ export default {
   name: "default",
   head: {
     bodyAttrs: {
-      class: "min-h-full dark:bg-gray-700 font-sans text-gray-700 dark:text-gray-50 leading-normal border-t-8 border-red-800"
+      class: "bg-white dark:bg-dark-blue min-h-full font-sans text-gray-700 dark:text-gray-50 leading-normal border-t-8 border-red-800"
     }
+  },
+  data() {
+    return {
+      componentKey: 0,
+    };
+  },
+  methods: {
+    forceRerender() {
+      this.componentKey += 1;
+    }
+  },
+  mounted () {
+    this.forceRerender();
   }
 }
 </script>

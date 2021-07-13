@@ -60,19 +60,19 @@
         <div class="marconi accordion-item">
           <div class="accordion-text">Marconi</div>
           <div class="accordion-action" :class="borderColor">
-            <a href="#" @click="getEpisodes('itt-marconi')">Marconi Home</a>
+            <a href="/schools/itt-marconi" >I podcast del "Marconi"</a>
           </div>
         </div>
         <div class="larosabianca accordion-item">
           <div class="accordion-text">La&nbsp;Rosa Bianca</div>
           <div class="accordion-action" :class="borderColor">
-            <a href="#">La Rosa Bianca Home</a>
+            <a href="/schools/la-rosa-bianca">I podcast del "La Rosa Bianca"</a>
           </div>
         </div>
         <div class="tambosi accordion-item">
           <div class="accordion-text">Tambosi</div>
           <div class="accordion-action" :class="borderColor">
-            <a href="#">Tambosi</a>
+            <a href="/schools/tambosi">I podcast del "Tambosi"</a>
           </div>
         </div>
       </div>
@@ -356,7 +356,7 @@ export default {
   },
   methods: {
     audioPlayer(episode) {
-      if (episode.audio?.url) {
+      if (episode?.audio?.url) {
         let audio = `<vue-plyr style="flex:2;" options='{"title":"pippo"}'>
                       <audio controls crossorigin playsinline class="w-full rounded-xl">
                         <source

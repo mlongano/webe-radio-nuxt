@@ -9,6 +9,33 @@ module.exports = {
       'sans': [ 'Montserrat', ...defaultTheme.fontFamily.sans ],
     },
     extend: {
+      inset: {
+        '1/10': '10%',
+        '2/10': '20%',
+        '3/10': '30%',
+        '4/10': '40%',
+        '5/10': '50%',
+        '6/10': '60%',
+        '7/10': '70%',
+        '8/10': '80%',
+        '9/10': '90%',
+        '1/20': '5%',
+        '3/20': '15%',
+        '5/20': '25%',
+        '7/20': '35%',
+        '9/20': '45%',
+        '11/20': '55%',
+        '13/20': '65%',
+        '15/20': '75%',
+        '17/20': '85%',
+        '19/20': '95%',
+     },
+      spacing: {
+        '128': '32rem',
+        '144': '36rem',
+        '160': '40rem',
+        '176': '44rem',
+      },
       boxShadow: {
         // One example using shadow-lg -> shadow-lg-invert
         'lg-invert':
@@ -20,6 +47,13 @@ module.exports = {
       fontFamily: {
         'montserrat': [ 'Montserrat', 'sans-serif' ]
       },
+      backgroundImage: theme => ( {
+
+        'marconi-podcast': "url('~/assets/images/marconiPodcast.jpg')",
+        'larosabianca-podcast': "url('~/assets/images/larosabiancaPodcast.jpg')",
+        'tambosi-podcast': "url('~/assets/images/tambosiPodcast.jpg')",
+
+      } )
     },
     darkSelector: '.dark-mode',
   },

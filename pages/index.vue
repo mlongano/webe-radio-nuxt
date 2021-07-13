@@ -24,23 +24,20 @@
             z-0
             absolute
             font-montserrat
-            text-5xl
-            md:text-7xl
-            top-0
-            left-1/2
-            md:left-1/2
-            lg:top-0
-            lg:text-9xl
+            top-1/10
+            left-9/20
+            md:top-2/10
+            md:left-5/10
+            lg:left-4/10
           "
         >
-          <h1 class="font-bold text-5xl md:text-7xl lg:text-9xl">WeBe</h1>
-          <h2 class="font-extralight text-5xl md:text-7xl lg:text-9xl">
+          <h1 class="font-bold text-6xl md:text-8xl lg:text-9xl">WeBe</h1>
+          <h2 class="font-normal text-3xl md:text-4xl lg:text-7xl uppercase text-center">
             Radio
           </h2>
         </div>
       </div>
       <div class="w-11/12 m-auto" v-html="spreakerEmbed" />
-      <EpisodesAudio v-if="spreakerEmbed === ''" :episodes="episodes" />
     </main>
     <footer class="mt-36">
       <img
@@ -100,12 +97,12 @@
           "
         />
         <div class="flex flex-row flex-wrap justify-around gap-3">
-          <a href="https://www.marconirovereto.it"><img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi" /></a>
-          <a href="https://www.rosabianca.tn.it/"><img
+          <a href="/schools/itt-marconi"><img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi" /></a>
+          <a href="/schools/la-rosa-bianca"><img
             src="~/assets/images/larosabiancaQuadrato.jpg"
             alt="La Rosa Bianca"
           /></a>
-          <a href="https://tambosi.tn.it/"><img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" /></a>
+          <a href="/schools/tambosi"><img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" /></a>
         </div>
         <img
           v-if="isDarkTheme"
@@ -167,8 +164,8 @@ export default {
     },
     audioPlayer() {
       let episode = this.episodes[0];
-      if (episode.audio?.url) {
-        let audio = `<vue-plyr options='{"title":"pippo"}'>
+      if (episode?.audio?.url) {
+        let audio = `<vue-plyr style="flex:2;" options='{"title":"pippo"}'>
                       <audio controls crossorigin playsinline class="w-full rounded-xl">
                         <source
                             src="${this.$getStrapiImage(episode.audio.url)}"
@@ -176,16 +173,20 @@ export default {
                         />
                       </audio>
                     </vue-plyr>`;
-        let title=`<h2>${episode.title}</h2>`;
-        let img=`<img class="rounded-xl" src="${this.$getStrapiImage(episode.cover.url)}" width="200">`;
-        return audio+title+img;
+        let title = `<h2><a href="/episodes/${episode.slug}">${episode.title}</a></h2>`;
+        let img = `<img class="rounded-xl" src="${this.$getStrapiImage(
+          episode.cover.url
+        )}" width="200">`;
+        return `<div class="flex flex-row w-full gap-2 justify-items-center items-center">
+                  ${img} <div class="flex flex-col" style="flex:2;"> ${title + audio} </div>
+                </div>`;
       }
       return "";
     },
 
     spreakerEmbed() {
       let episode = this.episodes[0];
-      if (episode.spreaker_id) {
+      if (episode?.spreaker_id) {
         let iframe = this.$spreakerIframe(
           episode.spreaker_id,
           "episode",
@@ -194,7 +195,7 @@ export default {
           episode.spreaker_limited
         );
         return iframe;
-      } else if (episode.audio?.url) {
+      } else if (episode?.audio?.url) {
         this.audioPlayer();
       };
       return "";
