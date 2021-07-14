@@ -1,6 +1,45 @@
 <template>
   <div>
-    <div class="pl-8 md:pl-32 lg:pl-60 mx-auto flex flex-row mic">
+        <div
+      class="
+        min-h-full
+        pt-8
+        pb-0
+        bg-gradient-to-br
+        dark:from-blue-800
+        dark:to-blue-400
+        from-blue-400
+        to-blue-100;
+      "
+    >
+      <div class="relative">
+        <img
+          class="z-10 relative top-0"
+          src="~/assets/images/ragazza-treccie-cuffie-microfono-afferma.png"
+          alt=""
+          srcset=""
+        />
+        <div
+          class="
+            z-0
+            absolute
+            font-montserrat
+            text-5xl
+            md:text-7xl
+            top-0
+            left-20
+            md:left-1/2
+            lg:left-96
+            lg:top-0
+            lg:text-9xl
+          "
+        >
+          <h1 class="font-bold text-5xl md:text-7xl lg:text-9xl">Chi siamo?</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="pl-8 md:pl-32 lg:pl-60 mx-auto flex flex-row mic mt-16">
     <div class="wrapper pt-20 overflow-visible">
       <div>
         <h2 class="mission">Mission</h2>
