@@ -150,7 +150,7 @@ export default {
       prefetch: true,
       query: lastEpisodesQuery,
       variables() {
-        return { limit: 1 };
+        return { limit: 100 };
       },
     },
   },
@@ -163,7 +163,9 @@ export default {
       return this.$colorMode.value === "dark";
     },
     audioPlayer() {
-      let episode = this.episodes[0];
+      let numberOfEpisodes =  this.episodes.length;
+      let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
+      let episode = this.episodes[selectedEpisode];
       if (episode?.audio?.url) {
         let audio = `<vue-plyr style="flex:2;" options='{"title":"pippo"}'>
                       <audio controls crossorigin playsinline class="w-full rounded-xl">
@@ -185,7 +187,9 @@ export default {
     },
 
     spreakerEmbed() {
-      let episode = this.episodes[0];
+      let numberOfEpisodes =  this.episodes.length;
+      let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
+      let episode = this.episodes[selectedEpisode];
       if (episode?.spreaker_id) {
         let iframe = this.$spreakerIframe(
           episode.spreaker_id,
