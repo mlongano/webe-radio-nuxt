@@ -72,7 +72,7 @@
         <div class="tambosi accordion-item">
           <div class="accordion-text">Tambosi</div>
           <div class="accordion-action" :class="borderColor">
-            <a href="/schools/tambosi">I podcast del "Tambosi"</a>
+            <a href="/schools/ite-tambosi">I podcast del "Tambosi"</a>
           </div>
         </div>
       </div>

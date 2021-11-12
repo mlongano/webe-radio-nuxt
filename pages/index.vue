@@ -102,7 +102,7 @@
             src="~/assets/images/larosabiancaQuadrato.jpg"
             alt="La Rosa Bianca"
           /></a>
-          <a href="/schools/tambosi"><img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" /></a>
+          <a href="/schools/ite-tambosi"><img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" /></a>
         </div>
         <img
           v-if="isDarkTheme"
