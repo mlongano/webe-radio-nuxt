@@ -162,29 +162,6 @@ export default {
     isDarkTheme() {
       return this.$colorMode.value === "dark";
     },
-    audioPlayer() {
-      let numberOfEpisodes =  this.episodes.length;
-      let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
-      let episode = this.episodes[selectedEpisode];
-      if (episode?.audio?.url) {
-        let audio = `<vue-plyr style="flex:2;" options='{"title":"pippo"}'>
-                      <audio controls crossorigin playsinline class="w-full rounded-xl">
-                        <source
-                            src="${this.$getStrapiImage(episode.audio.url)}"
-                            type="audio/mp3"
-                        />
-                      </audio>
-                    </vue-plyr>`;
-        let title = `<h2><a href="/episodes/${episode.slug}">${episode.title}</a></h2>`;
-        let img = `<img class="rounded-xl" src="${this.$getStrapiImage(
-          episode.cover.url
-        )}" width="200">`;
-        return `<div class="flex flex-row w-full gap-2 justify-items-center items-center">
-                  ${img} <div class="flex flex-col" style="flex:2;"> ${title + audio} </div>
-                </div>`;
-      }
-      return "";
-    },
 
     spreakerEmbed() {
       let numberOfEpisodes =  this.episodes.length;
@@ -200,7 +177,7 @@ export default {
         );
         return iframe;
       } else if (episode?.audio?.url) {
-        this.audioPlayer();
+        return this.$audioPlayer(episode);
       };
       return "";
     },

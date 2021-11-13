@@ -15,6 +15,7 @@ export default ( context, inject ) => {
           data-width="100%" data-height="${height}" data-theme="${theme}" data-playlist="true" data-playlist-continuous="false" data-autoplay="false" data-live-autoplay="false" data-chapters-image="true" data-episode-image-position="left" data-hide-logo="false" data-hide-likes="false" data-hide-comments="false" data-hide-sharing="false" data-hide-download="true">Ascolta ${title} su Spreaker.</a>`;
     return spreakerCode;
   }
+
   const spreakerIframe = ( id, type = "episode", height = "200px", theme = "dark", limited=false) => {
     let key = limited? "key" : "id";
     let spreakerEmbed = `<iframe src="https://widget.spreaker.com/player?${type}_${key}=${id}&theme=${theme}&playlist=true&playlist-continuous=false&autoplay=false&live-autoplay=false&chapters-image=true&episode_image_position=left&hide-logo=false&hide-likes=false&hide-comments=false&hide-sharing=false&hide-download=false" width="100%" height="${height}" frameborder="0"></iframe>`;
@@ -25,11 +26,32 @@ export default ( context, inject ) => {
 
     return spreakerEmbed;
   }
+
+  const audioPlayer = ( episode ) => {
+    if ( episode?.audio?.url ) {
+      let audio = `<vue-plyr style="flex:2;" options='{"title":"pippo"}'>
+                      <audio controls crossorigin playsinline class="w-full rounded-xl">
+                        <source
+                            src="${process.env.apiUri + episode.audio.url }"
+                            type="audio/mp3"
+                        />
+                      </audio>
+                    </vue-plyr>`;
+      let title = `<h2><a href="/episodes/${episode.slug}">${episode.title}</a></h2>`;
+      let img = `<img class="rounded-xl" src="${process.env.apiUri + episode.cover.url}" width="200">`;
+      return `<div class="flex flex-row w-full gap-2 justify-items-center items-center">
+                  ${img} <div class="flex flex-col" style="flex:2;"> ${title + audio} </div>
+                </div>`;
+    }
+    return "";
+  }
+
   // Inject $hello(msg) in Vue, context and store.
   inject( 'getStrapiImage', getStrapiImage );
   inject( 'markdownImage', markdownImage );
   inject( 'spreakerEmbed', spreakerEmbed );
   inject( 'spreakerIframe', spreakerIframe );
+  inject( 'audioPlayer', audioPlayer );
   // For Nuxt <= 2.12, also add 👇
   // context.$getStrapiImage = getStrapiImage;
   // context.$markdownImage = markdownImage;
