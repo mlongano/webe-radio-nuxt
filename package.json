@@ -17,6 +17,7 @@
     "install": "^0.13.0",
     "markdown-it-vue": "^1.1.6",
     "nuxt": "^2.15.3",
+    "nuxt-svg-loader": "^1.2.0",
     "vue-audio-visual": "^2.2.2",
     "vue-plyr": "^7.0.0"
   },

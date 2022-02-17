@@ -11,7 +11,6 @@
       relative
     "
   >
-    <ColorScheme placeholder="..." tag="span">
     <NuxtLink class="" to="/">
         <img
           class="mr-5"
@@ -54,7 +53,6 @@
     <button @click="changeTheme" class="menu-item">
       <div v-html="themeIcon"></div>
     </button>
-    </ColorScheme>
   </header>
 </template>
 <style lang="postcss" scoped>
@@ -63,7 +61,6 @@
 }
 </style>
 <script>
-import indexCopyVue from "../pages/podcasts/index copy.vue";
 export default {
   data() {
     return {
