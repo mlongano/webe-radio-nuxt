@@ -1,16 +1,7 @@
 <template>
   <div>
     <main
-      class="
-        min-h-full
-        pt-8
-        pb-8
-        bg-gradient-to-br
-        dark:from-purple-800
-        dark:to-purple-400
-        from-purple-400
-        to-purple-100;
-      "
+      class="min-h-full pt-8 pb-8 bg-gradient-to-br dark:from-purple-800 dark:to-purple-400 from-purple-400 to-purple-100;"
     >
       <div class="relative">
         <img
@@ -20,16 +11,7 @@
           srcset=""
         />
         <div
-          class="
-            z-0
-            absolute
-            font-montserrat
-            top-1/10
-            left-9/20
-            md:top-2/10
-            md:left-5/10
-            lg:left-4/10
-          "
+          class="z-0 absolute font-montserrat top-1/10 left-9/20 md:top-2/10 md:left-5/10 lg:left-4/10"
         >
           <h1 class="font-bold text-6xl md:text-8xl lg:text-9xl">WeBe</h1>
           <h2 class="font-normal text-3xl md:text-4xl lg:text-7xl uppercase text-center">
@@ -40,7 +22,7 @@
       <div class="w-11/12 m-auto" v-html="spreakerEmbed" />
     </main>
     <footer class="mt-36">
-    <!--  <div class="flex flex-row flex-wrap">
+      <!--  <div class="flex flex-row flex-wrap">
     <a href='https://play.google.com/store/apps/details?id=com.newradio.weberadio'><img alt='Disponibile su Google Play' src='~/assets/images/badge-play-store.png'/></a>
     <a href="https://apps.apple.com/us/app/webe-radio/id1609278287?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 250px; height: 83px;">
     <svg id="livetype" xmlns="http://www.w3.org/2000/svg" width="565" height="168" viewBox="0 0 565 168">
@@ -86,8 +68,8 @@
   </g>
 </svg>
 </a>
-    <a href="https://apps.apple.com/us/app/webe-radio/id1609278287?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 125px; height: 41px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/it-it?size=250x83&amp;releaseDate=1644451200&h=c04d47ce053be57cfe9b238d93450a02" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;"></a> -->
-    </div>
+    <a href="https://apps.apple.com/us/app/webe-radio/id1609278287?itsct=apps_box_badge&amp;itscg=30200" style="display: inline-block; overflow: hidden; border-radius: 13px; width: 125px; height: 41px;"><img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/it-it?size=250x83&amp;releaseDate=1644451200&h=c04d47ce053be57cfe9b238d93450a02" alt="Download on the App Store" style="border-radius: 13px; width: 250px; height: 83px;"></a>
+    </div> -->
       <img
         v-if="isDarkTheme"
         class="mx-auto mb-36"
@@ -109,9 +91,9 @@
         <h2 class="text-4xl mb-6">Il progetto</h2>
 
         <p class="mb-6">
-          WeBe RADIO mira alla realizzazione di una web radio, costituita e
-          gestita da una rete di scuole distribuite sul territorio provinciale,
-          e precisamente dalle seguenti scuole:
+          WeBe RADIO mira alla realizzazione di una web radio, costituita e gestita da una
+          rete di scuole distribuite sul territorio provinciale, e precisamente dalle
+          seguenti scuole:
         </p>
 
         <ul class="mb-6 list-disc list-inside">
@@ -120,37 +102,28 @@
           <li>Istituto di Istruzione "La Rosa Bianca" di Cavalese/Predazzo.</li>
         </ul>
         <p class="mb-36">
-          Ogni istituto costituisce una redazione autonoma con dispositivi
-          propri di trasmissione coordinati da una regia in un unico palinsesto.
-          Nasce come forma di didattica sperimentale e innovativa tesa al
-          coinvolgimento diretto e motivazionale dei giovani: uno strumento
-          poliedrico e multidisciplinare che permette di allenare competenze sia
-          tecniche che comunicative.
+          Ogni istituto costituisce una redazione autonoma con dispositivi propri di
+          trasmissione coordinati da una regia in un unico palinsesto. Nasce come forma di
+          didattica sperimentale e innovativa tesa al coinvolgimento diretto e
+          motivazionale dei giovani: uno strumento poliedrico e multidisciplinare che
+          permette di allenare competenze sia tecniche che comunicative.
         </p>
       </div>
       <div class="relative">
         <h2 class="uppercase text-2xl font-bold text-center mb-3">Le scuole</h2>
         <hr
-          class="
-            border-gray-800
-            bg-gray-800
-            dark:bg-gray-50
-            dark:border-gray-50
-            border-solid
-            h-2
-            w-2/3
-            mx-auto
-            rounded-lg
-            mb-6
-          "
+          class="border-gray-800 bg-gray-800 dark:bg-gray-50 dark:border-gray-50 border-solid h-2 w-2/3 mx-auto rounded-lg mb-6"
         />
         <div class="flex flex-row flex-wrap justify-around gap-3">
-          <a href="/schools/itt-marconi"><img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi" /></a>
-          <a href="/schools/la-rosa-bianca"><img
-            src="~/assets/images/larosabiancaQuadrato.jpg"
-            alt="La Rosa Bianca"
+          <a href="/schools/itt-marconi"
+            ><img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi"
           /></a>
-          <a href="/schools/ite-tambosi"><img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" /></a>
+          <a href="/schools/la-rosa-bianca"
+            ><img src="~/assets/images/larosabiancaQuadrato.jpg" alt="La Rosa Bianca"
+          /></a>
+          <a href="/schools/ite-tambosi"
+            ><img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi"
+          /></a>
         </div>
         <img
           v-if="isDarkTheme"
@@ -174,7 +147,6 @@
 import homepageQuery from "~/apollo/queries/single/homepage";
 import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
 import EpisodesAudio from "~/components/EpisodesAudio.vue";
-
 
 export default {
   layout: "home",
@@ -212,7 +184,7 @@ export default {
     },
 
     spreakerEmbed() {
-      let numberOfEpisodes =  this.episodes.length;
+      let numberOfEpisodes = this.episodes.length;
       let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
       let episode = this.episodes[selectedEpisode];
       if (episode?.spreaker_id) {
@@ -226,7 +198,7 @@ export default {
         return iframe;
       } else if (episode?.audio?.url) {
         return this.$audioPlayer(episode);
-      };
+      }
       return "";
     },
   },
@@ -248,10 +220,9 @@ audio {
 div >>> iframe {
   border-radius: 0.75rem;
   background-color: rgba(255, 255, 255, 0.85);
-  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 div >>> iframe {
   background-color: #a78bfa;
