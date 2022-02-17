@@ -14,9 +14,7 @@
           class="z-0 absolute font-montserrat top-1/10 left-9/20 md:top-2/10 md:left-5/10 lg:left-4/10"
         >
           <h1 class="font-bold text-6xl md:text-8xl lg:text-9xl">WeBe</h1>
-          <h2
-            class="font-normal text-3xl md:text-4xl lg:text-7xl uppercase text-center"
-          >
+          <h2 class="font-normal text-3xl md:text-4xl lg:text-7xl uppercase text-center">
             Radio
           </h2>
         </div>
@@ -27,7 +25,7 @@
       <div class="flex flex-row flex-wrap justify-center gap-8 mb-8">
         <a
           href="https://play.google.com/store/apps/details?id=com.newradio.weberadio"
-          class="h-10v"
+          class="store-badge"
         >
           <img
             class="max-h-full object-cover min-w-full align-bottom"
@@ -37,7 +35,7 @@
         </a>
         <a
           href="https://apps.apple.com/us/app/webe-radio/id1609278287?itsct=apps_box_badge&amp;itscg=30200"
-          class="h-10v"
+          class="store-badge h-10v"
         >
           <img
             class="h-full object-cover min-w-full align-bottom"
@@ -76,9 +74,9 @@
         <h2 class="text-4xl mb-6">Il progetto</h2>
 
         <p class="mb-6">
-          WeBe RADIO mira alla realizzazione di una web radio, costituita e
-          gestita da una rete di scuole distribuite sul territorio provinciale,
-          e precisamente dalle seguenti scuole:
+          WeBe RADIO mira alla realizzazione di una web radio, costituita e gestita da una
+          rete di scuole distribuite sul territorio provinciale, e precisamente dalle
+          seguenti scuole:
         </p>
 
         <ul class="mb-6 list-disc list-inside">
@@ -87,12 +85,11 @@
           <li>Istituto di Istruzione "La Rosa Bianca" di Cavalese/Predazzo.</li>
         </ul>
         <p class="mb-36">
-          Ogni istituto costituisce una redazione autonoma con dispositivi
-          propri di trasmissione coordinati da una regia in un unico palinsesto.
-          Nasce come forma di didattica sperimentale e innovativa tesa al
-          coinvolgimento diretto e motivazionale dei giovani: uno strumento
-          poliedrico e multidisciplinare che permette di allenare competenze sia
-          tecniche che comunicative.
+          Ogni istituto costituisce una redazione autonoma con dispositivi propri di
+          trasmissione coordinati da una regia in un unico palinsesto. Nasce come forma di
+          didattica sperimentale e innovativa tesa al coinvolgimento diretto e
+          motivazionale dei giovani: uno strumento poliedrico e multidisciplinare che
+          permette di allenare competenze sia tecniche che comunicative.
         </p>
       </div>
       <div class="relative">
@@ -105,10 +102,7 @@
             <img src="~/assets/images/marconiQuadrato.jpg" alt="Marconi" />
           </a>
           <a href="/schools/la-rosa-bianca">
-            <img
-              src="~/assets/images/larosabiancaQuadrato.jpg"
-              alt="La Rosa Bianca"
-            />
+            <img src="~/assets/images/larosabiancaQuadrato.jpg" alt="La Rosa Bianca" />
           </a>
           <a href="/schools/ite-tambosi">
             <img src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" />
@@ -133,12 +127,12 @@
 
 <script>
 // Import the restaurants query
-import homepageQuery from '~/apollo/queries/single/homepage'
-import lastEpisodesQuery from '~/apollo/queries/episode/lastEpisodes'
-import EpisodesAudio from '~/components/EpisodesAudio.vue'
+import homepageQuery from "~/apollo/queries/single/homepage";
+import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
+import EpisodesAudio from "~/components/EpisodesAudio.vue";
 
 export default {
-  layout: 'home',
+  layout: "home",
   components: {
     EpisodesAudio,
   },
@@ -148,7 +142,7 @@ export default {
       // Initialize an empty restaurants variabkle
       homepage: {},
       episodes: {},
-    }
+    };
   },
   apollo: {
     homepage: {
@@ -159,39 +153,39 @@ export default {
       prefetch: true,
       query: lastEpisodesQuery,
       variables() {
-        return { limit: 100 }
+        return { limit: 100 };
       },
     },
   },
   computed: {
     // Search system
     filteredList() {
-      return ''
+      return "";
     },
     isDarkTheme() {
-      return this.$colorMode.value === 'dark'
+      return this.$colorMode.value === "dark";
     },
 
     spreakerEmbed() {
-      let numberOfEpisodes = this.episodes.length
-      let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes)
-      let episode = this.episodes[selectedEpisode]
+      let numberOfEpisodes = this.episodes.length;
+      let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
+      let episode = this.episodes[selectedEpisode];
       if (episode?.spreaker_id) {
         let iframe = this.$spreakerIframe(
           episode.spreaker_id,
-          'episode',
-          '200px',
+          "episode",
+          "200px",
           this.$colorMode.value,
-          episode.spreaker_limited,
-        )
-        return iframe
+          episode.spreaker_limited
+        );
+        return iframe;
       } else if (episode?.audio?.url) {
-        return this.$audioPlayer(episode)
+        return this.$audioPlayer(episode);
       }
-      return ''
+      return "";
     },
   },
-}
+};
 </script>
 
 <style lang="postcss" scoped>
@@ -202,6 +196,12 @@ export default {
   }
 }
 
+@media (max-aspect-ratio: 1/1) {
+  .store-badge {
+    height: 5vh;
+  }
+}
+
 audio {
   margin: auto;
 }
@@ -209,10 +209,9 @@ audio {
 div >>> iframe {
   border-radius: 0.75rem;
   background-color: rgba(255, 255, 255, 0.85);
-  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
+    var(--tw-shadow);
 }
 div >>> iframe {
   background-color: #a78bfa;
