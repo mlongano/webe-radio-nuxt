@@ -34,8 +34,8 @@
           />
         </a>
         <a
-          href="https://apps.apple.com/us/app/webe-radio/id1609278287?itsct=apps_box_badge&amp;itscg=30200"
-          class="store-badge h-10v"
+          href="https://apps.apple.com/it/app/webe-radio/id1609278287"
+          class="store-badge"
         >
           <img
             class="h-full object-cover min-w-full align-bottom"
@@ -46,7 +46,12 @@
       </div>
       <figure class="mb-20">
         <figcaption class="text-center">Ascolta WeBe Radio</figcaption>
-        <audio class="rounded-full" controls src="https://stream.webe.radio/live">
+        <audio
+          class="rounded-full"
+          preload="none"
+          controls
+          src="https://stream.webe.radio/live"
+        >
           Your browser does not support the
           <code>audio</code>
           element.
@@ -194,6 +199,9 @@ export default {
   &:hover {
     @apply bg-gray-300;
   }
+}
+.store-badge {
+  height: 10vh;
 }
 
 @media (max-aspect-ratio: 1/1) {
