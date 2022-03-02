@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div v-if="!$colorMode.unknown">
     <Header />
     <Nuxt />
   </div>
+  <Loading v-else class="bg-white dark:bg-dark-blue">Loading...</Loading>
 </template>
 
 <script>
@@ -10,10 +11,10 @@ export default {
   name: "home",
   head: {
     bodyAttrs: {
-      class: "body"
-    }
-  }
-}
+      class: "body",
+    },
+  },
+};
 </script>
 <style lang="postcss">
 .hero-img-bg {
@@ -21,7 +22,7 @@ export default {
 }
 
 .body {
-  @apply bg-white dark:bg-dark-blue min-h-full font-sans text-gray-700 dark:text-gray-50 leading-normal border-t-8 border-red-800
+  @apply bg-white dark:bg-dark-blue min-h-full font-sans text-gray-700 dark:text-gray-50 leading-normal border-t-8 border-red-800;
 }
 
 .home-cover {

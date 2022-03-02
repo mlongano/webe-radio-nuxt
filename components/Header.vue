@@ -1,24 +1,9 @@
 <template>
   <header
-    class="
-      flex flex-row flex-wrap
-      justify-between
-      items-begins
-      lg:items-left
-      lg:space-x-4
-      py-6
-      px-3
-      relative
-    "
+    class="flex flex-row flex-wrap justify-between items-begins lg:items-left lg:space-x-4 py-6 px-3 relative"
   >
     <NuxtLink class="" to="/">
-        <img
-          class="mr-5"
-          :src="logo()"
-          alt="Logo"
-          width="80px"
-          height="50px"
-        />
+      <img class="mr-5" :src="logo()" alt="Logo" width="80px" height="50px" />
     </NuxtLink>
 
     <nav class="flex flex-row">
@@ -61,6 +46,7 @@
 }
 </style>
 <script>
+
 export default {
   data() {
     return {
@@ -95,8 +81,6 @@ export default {
     themColor() {
       return this.$colorMode.value;
     },
-
-
   },
   methods: {
     logo() {
@@ -120,8 +104,7 @@ export default {
         : require("~/assets/images/news-nero.png");
     },
     changeTheme() {
-      this.$colorMode.preference =
-        this.$colorMode.value == "light" ? "dark" : "light";
+      this.$colorMode.preference = this.$colorMode.value === "light" ? "dark" : "light";
     },
   },
 };
