@@ -44,20 +44,7 @@
           />
         </a>
       </div>
-      <figure class="mb-20">
-        <figcaption class="text-center">Ascolta WeBe Radio</figcaption>
-        <audio
-          class="rounded-full"
-          preload="none"
-          controls
-          src="https://stream.webe.radio/live"
-        >
-          Your browser does not support the
-          <code>audio</code>
-          element.
-        </audio>
-      </figure>
-
+      <WebePlayer class="mb-8" />
       <img
         v-if="isDarkTheme"
         class="mx-auto mb-36"
@@ -135,11 +122,13 @@
 import homepageQuery from "~/apollo/queries/single/homepage";
 import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
 import EpisodesAudio from "~/components/EpisodesAudio.vue";
+import WebePlayer from "~/components/WebePlayer.vue";
 
 export default {
   layout: "home",
   components: {
     EpisodesAudio,
+    WebePlayer,
   },
 
   data() {
@@ -167,6 +156,10 @@ export default {
     filteredList() {
       return "";
     },
+    themeMode() {
+      return this.$colorMode.value === "dark" ? "dark" : "light";
+    },
+
     isDarkTheme() {
       return this.$colorMode.value === "dark";
     },

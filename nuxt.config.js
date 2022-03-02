@@ -24,11 +24,17 @@ export default {
   plugins: [
     { src: '~/plugins/markdown-it-vue.js', ssr: false },
     { src: '~/plugins/vue-plyr.js', mode: 'client' },
+    { src: '~/plugins/mdi.js', mode: 'client' },
     '~/plugins/utils.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
+  components: [
+      '~/components',
+      '~/components/spinners',
+      //{ path: '~/node_modules/vue-loading-spinner/src/components/', level: 1 },
+  ],
+
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
