@@ -17,13 +17,17 @@
     "core-js": "^3.11.2",
     "graphql": "^15.5.0",
     "install": "^0.13.0",
+    "lodash": "^4.17.21",
     "markdown-it-vue": "^1.1.6",
     "nuxt": "^2.15.3",
     "nuxt-svg-loader": "^1.2.0",
     "sass": "^1.49.9",
     "sass-loader": "10.1.1",
+    "util": "^0.12.4",
+    "vue-async-computed": "^3.9.0",
     "vue-audio-visual": "^2.2.2",
     "vue-loading-spinner": "^1.0.11",
+    "vue-lodash": "^2.1.2",
     "vue-plyr": "^7.0.0"
   },
   "devDependencies": {

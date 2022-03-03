@@ -1,0 +1,21 @@
+
+@title = "The Passenger"
+@author = "U2"
+@album = "With Or Without You"
+@year = ""
+GET https://musicbrainz.org/ws/2/recording?fmt=json&query=%22title:"{{album}}" AND name:"{{author}}"%22&limit=1&offset=0 HTTP/1.1
+
+###
+
+https://musicbrainz.org/ws/2/recording?fmt=json&query=%22release-group: "{{album}}" AND status:"Official" AND primary-type: "Album" AND artist-credit: "{{author}}"%22
+
+###
+
+GET /release/19ca0861-487d-43c3-a819-aa16a4c20f60/front HTTP/1.1
+Host: coverartarchive.org
+Accept: application/json
+
+
+###
+
+GET https://itunes.apple.com/search?term="Lust For Life"&entity=album&limit=1 HTTP/1.1

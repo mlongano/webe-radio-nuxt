@@ -25,6 +25,8 @@ export default {
     { src: '~/plugins/markdown-it-vue.js', ssr: false },
     { src: '~/plugins/vue-plyr.js', mode: 'client' },
     { src: '~/plugins/mdi.js', mode: 'client' },
+    { src: '~/plugins/lodash.js', mode: 'client' },
+    { src: '~/plugins/vue-async-computed.js', mode: 'client' },
     '~/plugins/utils.js',
   ],
 

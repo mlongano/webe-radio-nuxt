@@ -47,8 +47,8 @@ export default ( context, inject ) => {
   }
 
   const coverSrc = ( colorMode ) => {
-    console.log( `~/assets/images/logo-${colorMode === "dark" ? "dark" : "light"}.png` );
-    return `~/assets/images/logo-${colorMode === "dark" ? "dark" : "light"}.png`;
+    console.log( `/images/logo-${colorMode === "dark" ? "dark" : "light"}.png` );
+    return `/images/logo-${colorMode === "dark" ? "dark" : "light"}.png`;
   }
 
   // Inject $hello(msg) in Vue, context and store.
@@ -58,6 +58,7 @@ export default ( context, inject ) => {
   inject( 'spreakerIframe', spreakerIframe );
   inject( 'audioPlayer', audioPlayer );
   inject( 'coverSrc', coverSrc );
+
   // For Nuxt <= 2.12, also add 👇
   // context.$getStrapiImage = getStrapiImage;
   // context.$markdownImage = markdownImage;

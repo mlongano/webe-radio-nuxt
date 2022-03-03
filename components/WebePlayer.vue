@@ -5,7 +5,8 @@
       <div class="flex flex-col justify-between items-center">
         <div class="flex flex-col justify-between items-center">
           <div class="dark:text-yellow-300 text-yellow-700 font-bold text-2xl">
-            <MdiSvg>{{ mdiRadioTower }}</MdiSvg> WeBe Radio
+            <MdiSvg>{{ mdiRadioTower }}</MdiSvg
+            >WeBe Radio
             <MdiSvg>{{ mdiRadioTower }}</MdiSvg>
           </div>
           <p class="dark:text-yellow-300 text-yellow-700 font-bold text-xl">
@@ -24,8 +25,8 @@
         </div>
 
         <img
-          class="p-4 mb-8 shadow-2xl rounded-lg"
-          :src="require(`~/assets/images/logo-${themeMode}.png`)"
+          class="p-4 mb-8 shadow-2xl rounded-lg max-w-xs"
+          :src="coverArt"
           alt="Cover"
         />
         <div class="text-center">
@@ -68,7 +69,6 @@ import {
   mdiVolumePlus,
   mdiRadioTower,
 } from "@mdi/js";
-
 export default {
   data() {
     return {
@@ -80,8 +80,8 @@ export default {
         titolo: "",
         album: "",
         anno: "",
-        ascoltatori: 0,
       },
+      ascoltatori: 0,
       metaDataPolling: null,
       muted: false,
       volume: 90,
@@ -101,8 +101,7 @@ export default {
     playSvg() {
       return this.isPlaying ? mdiStopCircle : mdiPlayCircle;
     },
-    coverSrc() {
-      console.log(this.$coverSrc(this.$colorMode.value));
+    defaultCover() {
       return this.$coverSrc(this.$colorMode.value);
     },
     title() {
@@ -125,6 +124,53 @@ export default {
     },
     themeMode() {
       return this.$colorMode.value === "dark" ? "dark" : "light";
+    },
+  },
+  asyncComputed: {
+    coverArt: {
+      async get() {
+        const query = `https://musicbrainz.org/ws/2/recording?fmt=json&query=%22title:"${this.albumName}" AND name:"${this.artistName}"%22`;
+        let response = await fetch(query);
+        if (!response.ok) {
+          return this.defaultCover;
+        }
+        let json = await response.json();
+        const recordings = json.recordings.filter((recording) => {
+          const releases = recording.releases?.filter((release) => {
+            console.log(release["release-group"]["primary-type"]);
+            return (
+              this.albumName.toLowerCase().includes(release.title.toLowerCase()) &&
+              release["release-group"]["primary-type"] === "Album"
+            );
+          });
+          return releases?.length > 0;
+        });
+        if (recordings.length > 0) {
+          console.log("FOUND");
+          console.log(recordings[0].releases[0].id);
+          let urls = recordings
+            .map((recording) => recording.releases)
+            .flat()
+            .map((release) => `https://coverartarchive.org/release/${release.id}/front`);
+          console.log(urls.slice(0, 3));
+          let response = null;
+          do {
+            const url = urls.pop();
+            response = await fetch(url);
+          } while (!response.ok && urls.length > 0);
+          if (response.ok) {
+            return response.url;
+          } else {
+            return this.defaultCover;
+          }
+        }
+        return this.defaultCover;
+      },
+      default() {
+        return this.defaultCover;
+      },
+
+      watch: ["songMetadata"],
     },
   },
   methods: {
@@ -172,6 +218,11 @@ export default {
         .replace(/"/g, '\\"')
         .replace(/§§/g, '"');
     },
+
+    isMetadataEquals(a, b) {
+      return a.titolo === b.titolo && a.album === b.album && a.artista === b.artista;
+    },
+
     async fetchSongMetadata() {
       //const response = await fetch("http://10.0.3.11:8000/status-json.xsl");
       const response = await fetch("https://stream.webe.radio/status-json.xsl");
@@ -179,19 +230,18 @@ export default {
       const metadata = JSON.parse(
         this.sanitifyDoubleQuotes(data?.icestats?.source?.title)
       );
-      metadata.ascoltatori = data?.icestats?.source?.listeners;
-      return metadata;
+      if (!this.isMetadataEquals(this.songMetadata, metadata)) {
+        this.songMetadata = metadata;
+      }
+      this.ascoltatori = data?.icestats?.source?.listeners;
     },
   },
   mounted() {
     this.$refs.audioPlayer.volume = this.volume / 100;
   },
   async created() {
-    this.songMetadata = await this.fetchSongMetadata();
-    this.metaDataPolling = setInterval(
-      async () => (this.songMetadata = await this.fetchSongMetadata()),
-      10000
-    );
+    await this.fetchSongMetadata();
+    this.metaDataPolling = setInterval(this.fetchSongMetadata(), 10000);
   },
   beforeUnmount() {
     clearInterval(this.metaDataPolling);
