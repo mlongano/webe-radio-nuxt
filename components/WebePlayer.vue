@@ -76,10 +76,10 @@ export default {
       once: true,
       start: 0,
       songMetadata: {
-        artista: "",
         titolo: "",
-        album: "",
+        artista: "",
         anno: "",
+        album: "",
       },
       ascoltatori: 0,
       metaDataPolling: null,
@@ -117,7 +117,7 @@ export default {
       return this.songMetadata.anno;
     },
     listeners() {
-      return this.songMetadata.ascoltatori;
+      return this.ascoltatori;
     },
     songSrc() {
       return "https://stream.webe.radio/live";
@@ -137,22 +137,24 @@ export default {
         let json = await response.json();
         const recordings = json.recordings.filter((recording) => {
           const releases = recording.releases?.filter((release) => {
-            console.log(release["release-group"]["primary-type"]);
+            //console.log(release["release-group"]["primary-type"]);
             return (
               this.albumName.toLowerCase().includes(release.title.toLowerCase()) &&
-              release["release-group"]["primary-type"] === "Album"
+              release["release-group"]["primary-type"] === "Album" // ||
+              //release["release-group"]["primary-type"] === "EP" ||
+              //release["release-group"]["primary-type"] === "Single"
             );
           });
           return releases?.length > 0;
         });
         if (recordings.length > 0) {
           console.log("FOUND");
-          console.log(recordings[0].releases[0].id);
+          //console.log(recordings[0].releases[0].id);
           let urls = recordings
             .map((recording) => recording.releases)
             .flat()
             .map((release) => `https://coverartarchive.org/release/${release.id}/front`);
-          console.log(urls.slice(0, 3));
+          //console.log(urls.slice(0, 3));
           let response = null;
           do {
             const url = urls.pop();
@@ -185,7 +187,7 @@ export default {
     volumeUp() {
       this.volume = this.volume <= 90 ? this.volume + 10 : 100;
       this.$refs.audioPlayer.volume = this.volume / 100;
-      console.log(this.volume);
+      //console.log(this.volume);
     },
     setVolume() {
       this.volume = parseInt(this.$refs.volumeSlider.value);
@@ -200,11 +202,11 @@ export default {
         this.$refs.audioPlayer.pause();
         this.start = Date.now();
       } else {
-        console.log("Old time:" + this.$refs.audioPlayer.currentTime);
+        //console.log("Old time:" + this.$refs.audioPlayer.currentTime);
         this.$refs.audioPlayer.currentTime =
           this.$refs.audioPlayer.currentTime + (Date.now() - this.start) / 1000;
         this.$refs.audioPlayer.play();
-        console.log("NEW time:" + this.$refs.audioPlayer.currentTime);
+        //console.log("NEW time:" + this.$refs.audioPlayer.currentTime);
       }
 
       this.isPlaying = !this.isPlaying;
@@ -227,13 +229,15 @@ export default {
       //const response = await fetch("http://10.0.3.11:8000/status-json.xsl");
       const response = await fetch("https://stream.webe.radio/status-json.xsl");
       const data = await response.json();
-      const metadata = JSON.parse(
-        this.sanitifyDoubleQuotes(data?.icestats?.source?.title)
-      );
+      const metadataList = data?.icestats?.source?.title?.split(" - ");
+      const metadataProps = ["titolo", "artista", "anno", "album"];
+
+      const metadata = this.$_.zipObject(metadataProps, metadataList);
+      //console.log(metadata);
       if (!this.isMetadataEquals(this.songMetadata, metadata)) {
         this.songMetadata = metadata;
       }
-      this.ascoltatori = data?.icestats?.source?.listeners;
+      this.ascoltatori = data?.icestats?.source?.listener_peak;
     },
   },
   mounted() {
@@ -241,7 +245,7 @@ export default {
   },
   async created() {
     await this.fetchSongMetadata();
-    this.metaDataPolling = setInterval(this.fetchSongMetadata(), 10000);
+    this.metaDataPolling = setInterval(async () => this.fetchSongMetadata(), 10000);
   },
   beforeUnmount() {
     clearInterval(this.metaDataPolling);
