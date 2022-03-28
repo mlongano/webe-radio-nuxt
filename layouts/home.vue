@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!$colorMode.unknown">
+  <div v-if="!$colorMode.unknown || isColorModeTimedOut">
     <Header />
     <Nuxt />
   </div>
@@ -13,6 +13,21 @@ export default {
     bodyAttrs: {
       class: "body",
     },
+  },
+  data() {
+    return {
+      isColorModeTimedOut: false,
+    };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.isColorModeTimedOut = true;
+      if (this.$colorMode.value !== "dark") {
+        this.$colorMode.preference = "light";
+      } else {
+        this.$colorMode.preference = "dark";
+      }
+    }, 1000);
   },
 };
 </script>
