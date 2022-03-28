@@ -1,16 +1,7 @@
 <template>
   <div>
     <div
-      class="
-        min-h-full
-        pt-8
-        pb-0
-        bg-gradient-to-br
-        dark:from-blue-800
-        dark:to-blue-400
-        from-blue-400
-        to-blue-100;
-      "
+      class="min-h-full pt-8 pb-0 bg-gradient-to-br dark:from-blue-800 dark:to-blue-400 from-blue-400 to-blue-100;"
     >
       <div class="relative">
         <img
@@ -20,19 +11,7 @@
           srcset=""
         />
         <div
-          class="
-            z-0
-            absolute
-            font-montserrat
-            text-5xl
-            md:text-7xl
-            top-0
-            left-20
-            md:left-1/2
-            lg:left-96
-            lg:top-0
-            lg:text-9xl
-          "
+          class="z-0 absolute font-montserrat text-5xl md:text-7xl top-0 left-20 md:left-1/2 lg:left-96 lg:top-0 lg:text-9xl"
         >
           <h1 class="font-bold text-5xl md:text-7xl lg:text-9xl">Podcasts</h1>
         </div>
@@ -60,7 +39,7 @@
         <div class="marconi accordion-item">
           <div class="accordion-text">Marconi</div>
           <div class="accordion-action" :class="borderColor">
-            <a href="/schools/itt-marconi" >I podcast del "Marconi"</a>
+            <a href="/schools/itt-marconi">I podcast del "Marconi"</a>
           </div>
         </div>
         <div class="larosabianca accordion-item">
@@ -78,22 +57,9 @@
       </div>
 
       <div class="relative mt-16">
-        <h2 class="uppercase text-2xl font-bold text-center mb-3">
-          Ultimi episodi
-        </h2>
+        <h2 class="uppercase text-2xl font-bold text-center mb-3">Ultimi episodi</h2>
         <hr
-          class="
-            border-gray-800
-            bg-gray-800
-            dark:bg-gray-50
-            dark:border-gray-50
-            border-solid
-            h-2
-            w-2/3
-            mx-auto
-            rounded-lg
-            mb-6
-          "
+          class="border-gray-800 bg-gray-800 dark:bg-gray-50 dark:border-gray-50 border-solid h-2 w-2/3 mx-auto rounded-lg mb-6"
         />
       </div>
       <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-16">
@@ -307,6 +273,7 @@ $mq-desktop: "min-width: 630px";
   }
 }
 </style>
+
 <script>
 // Import the restaurants query
 import podcastsQuery from "~/apollo/queries/podcast/podcasts";
@@ -370,7 +337,9 @@ export default {
           episode.cover.url
         )}" width="200">`;
         return `<div class="flex flex-row w-full gap-2 justify-items-center items-center">
-                  ${img} <div class="flex flex-col" style="flex:2;"> ${title + audio} </div>
+                  ${img} <div class="flex flex-col" style="flex:2;"> ${
+          title + audio
+        } </div>
                 </div>`;
       }
       return "";
