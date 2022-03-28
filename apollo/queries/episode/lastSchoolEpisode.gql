@@ -1,5 +1,5 @@
 query Episodes  ($school: String!, $limit: Int!) {
-  episodes (limit:$limit, where:{podcast:{school: {slug :$school}}}, sort: "date:desc") {
+  episodes (limit:$limit, where:{podcast:{schools: {slug :$school}}}, sort: "date:desc") {
     id
     title
     slug
@@ -22,7 +22,7 @@ query Episodes  ($school: String!, $limit: Int!) {
     podcast {
       title
       slug
-      school {
+      schools {
         name
         short_name
         slug

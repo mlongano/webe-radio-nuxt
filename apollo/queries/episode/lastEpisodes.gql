@@ -19,10 +19,15 @@ query Episodes  ($limit: Int!) {
     audio {
       url
     }
+    schools {
+      name
+      short_name
+      slug
+    }
     podcast {
       title
       slug
-      school {
+      schools {
         name
         short_name
         slug

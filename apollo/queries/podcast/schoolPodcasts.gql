@@ -1,5 +1,5 @@
 query Podcasts ($school: String!) {
-  podcasts (where:{school: {slug :$school}},sort: "episodes.date:desc") {
+  podcasts (where:{schools: {slug :$school}},sort: "episodes.date:desc") {
     id
 
     title
@@ -8,7 +8,7 @@ query Podcasts ($school: String!) {
     description
     spreaker_id
     spreaker_limited
-    school {
+    schools {
       name
       short_name
       slug

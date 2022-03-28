@@ -7,7 +7,7 @@ query Podcasts {
     description
     spreaker_id
     spreaker_limited
-    school {
+    schools {
       name
     }
     cover {

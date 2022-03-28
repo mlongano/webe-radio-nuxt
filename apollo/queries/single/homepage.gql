@@ -1,9 +1,9 @@
 query Homepage {
   homepage {
     seo {
-      metaTitle
-      metaDescription
-      shareImage {
+      meta_title
+      meta_description
+      share_image {
         name
         caption
         formats
