@@ -54,9 +54,12 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/apollo',
+    '@nuxtjs/dotenv',
   ],
   env: {
-    apiUri: ( process.env.NUXT_ENV_API_URI || 'https://api.webe.radio')
+    apiUri: ( process.env.NUXT_ENV_API_URI || 'https://api.webe.radio'),
+    DISCOGS_KEY: process.env.DISCOGS_KEY,
+    DISCOGS_SECRET: process.env.DISCOGS_SECRET,
   },
   apollo: {
     clientConfigs: {

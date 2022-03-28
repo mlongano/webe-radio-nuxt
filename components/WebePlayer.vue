@@ -2,11 +2,10 @@
   <div class="shadow-2xl rounded-lg w-max m-auto p-4">
     <audio class="rounded-full" preload="metadata" :src="songSrc" ref="audioPlayer" />
     <client-only>
-      <div class="flex flex-col justify-between items-center">
+      <div ref="audioControls" class="flex flex-col justify-between items-center">
         <div class="flex flex-col justify-between items-center">
           <div class="dark:text-yellow-300 text-yellow-700 font-bold text-2xl">
-            <MdiSvg>{{ mdiRadioTower }}</MdiSvg
-            >WeBe Radio
+            <MdiSvg>{{ mdiRadioTower }}</MdiSvg> WeBe Radio
             <MdiSvg>{{ mdiRadioTower }}</MdiSvg>
           </div>
           <p class="dark:text-yellow-300 text-yellow-700 font-bold text-xl">
@@ -26,7 +25,7 @@
 
         <img
           class="p-4 mb-8 shadow-2xl rounded-lg max-w-xs"
-          :src="coverArt"
+          :src="coverArtDiscogs"
           alt="Cover"
         />
         <div class="text-center">
@@ -129,7 +128,7 @@ export default {
   asyncComputed: {
     coverArt: {
       async get() {
-        const query = `https://musicbrainz.org/ws/2/recording?fmt=json&query=%22title:"${this.albumName}" AND name:"${this.artistName}"%22`;
+        const query = `https://musicbrainz.org/ws/2/recording?fmt=json&query=recording:%22${this.title}%22%20AND%20release:%22${this.albumName}%22%20AND%20artist:%22${this.artistName}%22`;
         let response = await fetch(query);
         if (!response.ok) {
           return this.defaultCover;
@@ -165,6 +164,29 @@ export default {
           } else {
             return this.defaultCover;
           }
+        }
+        return this.defaultCover;
+      },
+      default() {
+        return this.defaultCover;
+      },
+
+      watch: ["songMetadata"],
+    },
+    coverArtDiscogs: {
+      async get() {
+        const query = `https://api.discogs.com/database/search?q=${this.artistName}%20-%20${this.title}%20-%20${this.albumName}&type=release&per_page=1`;
+        let response = await fetch(query, {
+          headers: {
+            Authorization: `Discogs key=${process.env.DISCOGS_KEY}, secret=${process.env.DISCOGS_SECRET}`,
+          },
+        });
+        if (!response.ok) {
+          return this.defaultCover;
+        }
+        let json = await response.json();
+        if (json.results.length > 0) {
+          return json.results[0].cover_image;
         }
         return this.defaultCover;
       },
@@ -237,14 +259,25 @@ export default {
       if (!this.isMetadataEquals(this.songMetadata, metadata)) {
         this.songMetadata = metadata;
       }
-      this.ascoltatori = data?.icestats?.source?.listener_peak;
+      const listeners = data?.icestats?.source?.listeners;
+      this.ascoltatori =
+        listeners > 0 ? listeners : data?.icestats?.source?.listener_peak;
     },
   },
   mounted() {
     this.$refs.audioPlayer.volume = this.volume / 100;
+    this.$refs.audioPlayer.addEventListener(
+      "message",
+      (event) => {
+        console.log("Received message: " + event.data);
+      },
+      false
+    );
+    this.songMetadata = { ...this.songMetadata };
   },
   async created() {
     await this.fetchSongMetadata();
+
     this.metaDataPolling = setInterval(async () => this.fetchSongMetadata(), 10000);
   },
   beforeUnmount() {
