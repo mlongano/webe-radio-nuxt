@@ -3,21 +3,19 @@
     <div
       class="min-h-full pt-8 pb-0 bg-gradient-to-br dark:from-blue-800 dark:to-blue-400 from-blue-400 to-blue-100;"
     >
-      <div class="relative">
+      <div class="z-0 font-montserrat">
+        <h1 class="font-bold text-8xl text-center">Podcasts</h1>
+      </div>
+      <div class="relative larghezza-fissa">
         <img
-          class="z-10 relative top-0"
+          class="z-10 mx-auto"
           src="~/assets/images/ragazzo-cuffie-indica-v2.png"
           alt=""
           srcset=""
         />
-        <div
-          class="z-0 absolute font-montserrat text-5xl md:text-7xl top-0 left-20 md:left-1/2 lg:left-96 lg:top-0 lg:text-9xl"
-        >
-          <h1 class="font-bold text-5xl md:text-7xl lg:text-9xl">Podcasts</h1>
-        </div>
       </div>
     </div>
-    <main class="mt-16">
+    <main class="mt-16 larghezza-fissa">
       <img
         v-if="isDarkTheme"
         class="mx-auto"
@@ -43,7 +41,7 @@
           </div>
         </div>
         <div class="larosabianca accordion-item">
-          <div class="accordion-text">La&nbsp;Rosa Bianca</div>
+          <div class="accordion-text">La&nbsp;Rosa&nbsp;Bianca</div>
           <div class="accordion-action" :class="borderColor">
             <a href="/schools/la-rosa-bianca">I podcast del "La Rosa Bianca"</a>
           </div>
@@ -81,7 +79,7 @@
         <p>Nessun Episodio trovato</p>
       </div>
     </main>
-    <footer class="mt-20">
+    <footer class="mt-20 larghezza-fissa">
       <img
         v-if="isDarkTheme"
         class="mx-auto mt-4 mb-4"
@@ -138,11 +136,9 @@ $mq-desktop: "min-width: 630px";
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-  height: 35vh;
 
   @media (min-width: 768px) {
     flex-direction: row;
-    height: auto;
   }
   .accordion-item:hover,
   .accordion-item:active {
@@ -172,7 +168,7 @@ $mq-desktop: "min-width: 630px";
   overflow: hidden;
   @media (min-width: 768px) {
     transform: skewX(10deg);
-    height: 38vw;
+    height: 32em;
   }
   transition: flex-grow 0.2s, opacity 0.2s;
   &:before {
@@ -203,11 +199,12 @@ $mq-desktop: "min-width: 630px";
 
   .accordion-text {
     position: relative;
-    font-size: 6vw;
+    font-size: 4em;
     text-align: center;
-    top: 3vh;
+    padding-top: 1em;
     @media (min-width: 768px) {
-      transform: rotate(90deg) skewX(10deg) translateX(13vh);
+      padding-left: 2em;
+      transform: rotate(90deg) skewX(10deg) translateX(1em);
     }
     transition: all 500ms ease;
   }
@@ -217,13 +214,12 @@ $mq-desktop: "min-width: 630px";
     opacity: 0;
     position: relative;
     width: 70%;
-    font-size: 2vw;
     padding: 5%;
     top: 20%;
     line-height: 1.3;
     margin: auto;
     text-align: center;
-    font-size: 2vh;
+    font-size: 1.5em;
     transform: rotate(0deg);
     transition: all 500ms ease;
   }
@@ -238,9 +234,6 @@ $mq-desktop: "min-width: 630px";
 }
 
 .marconi {
-  &:before {
-    background-image: url("~/assets/images/marconiPodcast.jpg");
-  }
   &:after {
     @apply bg-gradient-to-br
       dark:from-blue-800
@@ -251,9 +244,6 @@ $mq-desktop: "min-width: 630px";
 }
 
 .larosabianca {
-  &:before {
-    background-image: url("~/assets/images/larosabiancaPodcast.jpg");
-  }
   &:after {
     @apply bg-gradient-to-br from-purple-400 to-purple-100 dark:from-purple-800 dark:to-purple-400;
   }
@@ -265,9 +255,6 @@ $mq-desktop: "min-width: 630px";
 }
 
 .tambosi {
-  &:before {
-    background-image: url("~/assets/images/tambosiPodcast.jpg");
-  }
   &:after {
     @apply bg-gradient-to-br from-gray-400 to-gray-100 dark:from-gray-800 dark:to-gray-400;
   }
