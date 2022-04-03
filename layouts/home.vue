@@ -16,7 +16,7 @@ export default {
   },
   data() {
     return {
-      isColorModeTimedOut: false,
+      isColorModeTimedOut: true,
     };
   },
   mounted() {
@@ -37,7 +37,7 @@ export default {
 }
 
 .body {
-  @apply bg-white dark:bg-dark-blue min-h-full font-sans text-gray-700 dark:text-gray-50 leading-normal border-t-8 border-red-800;
+  @apply bg-white dark:bg-dark-blue min-h-full font-sans text-gray-700 dark:text-gray-50 leading-normal;
 }
 
 .home-cover {
