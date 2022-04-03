@@ -1,52 +1,76 @@
 <template>
   <header
-    class="flex flex-row flex-wrap justify-between items-begins lg:items-left lg:space-x-4 py-6 px-3 relative"
+    class="flex flex-row flex-wrap justify-between items-begins lg:items-left lg:space-x-4 py-6 px-3 relative larghezza-fissa"
   >
     <NuxtLink class="" to="/">
-      <img class="mr-5" :src="logo()" alt="Logo" width="80px" height="50px" />
+      <img class="mr-1" :src="logo()" alt="Logo" width="80px" height="50px" />
     </NuxtLink>
 
-    <nav class="flex flex-row">
+    <nav class="flex flex-row justify-items-center">
       <NuxtLink class="menu-item" to="/podcasts" title="Podcasts">
         <img
-          class="mr-5"
+          class="mx-2"
           :src="podcasts()"
           alt="Podcasts"
           :width="iconMenuSize"
           :height="iconMenuSize"
         />
+        <p class="text-xs">Podcasts</p>
       </NuxtLink>
       <NuxtLink class="menu-item" to="/posts" title="Blog">
         <img
-          class="mr-5"
+          class="mx-2"
           :src="news()"
           alt="Blog"
           :width="iconMenuSize"
           :height="iconMenuSize"
         />
+        <p class="text-xs">News</p>
       </NuxtLink>
       <NuxtLink class="menu-item" to="/aboutUs" title="Chi siamo">
         <img
-          class="mr-5"
+          class="mx-2"
           :src="about()"
           alt="Logo"
           :width="iconMenuSize"
           :height="iconMenuSize"
         />
+        <p class="text-xs">Chi siamo</p>
+      </NuxtLink>
+      <NuxtLink class="menu-item" to="/aboutUs" title="Cerca">
+        <img
+          class="mx-2"
+          :src="search()"
+          alt="Logo"
+          :width="iconMenuSize"
+          :height="iconMenuSize"
+        />
+        <p class="text-xs">&nbsp;</p>
       </NuxtLink>
     </nav>
     <button @click="changeTheme" class="menu-item">
-      <div v-html="themeIcon"></div>
+      <img
+        class="mx-2"
+        :src="themeIcon()"
+        alt="Theme"
+        :width="iconMenuSize"
+        :height="iconMenuSize"
+      />
+      <p class="text-xs">&nbsp;</p>
     </button>
   </header>
 </template>
 <style lang="postcss" scoped>
 .menu-item {
+  @apply flex flex-col justify-center items-center;
   @apply hover:text-gray-400 dark-hover:text-gray-600 hover:border-gray-500 lg:p-4 py-3 px-0 border-b-2 border-transparent lg:mb-0 mb-2;
+}
+.menu-item:focus,
+.menu-item:focus-visible {
+  @apply outline-none;
 }
 </style>
 <script>
-
 export default {
   data() {
     return {
@@ -69,15 +93,6 @@ export default {
     };
   },
   computed: {
-    themeIcon() {
-      return this.$colorMode.value === "light"
-        ? `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 32 32" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-      </svg>`
-        : `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 32 32" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-      </svg>`;
-    },
     themColor() {
       return this.$colorMode.value;
     },
@@ -102,6 +117,16 @@ export default {
       return this.$colorMode.value === "dark"
         ? require("~/assets/images/news-bianco.png")
         : require("~/assets/images/news-nero.png");
+    },
+    search() {
+      return this.$colorMode.value === "dark"
+        ? require("~/assets/images/lente-dark.png")
+        : require("~/assets/images/lente-light.png");
+    },
+    themeIcon() {
+      return this.$colorMode.value === "dark"
+        ? require("~/assets/images/theme-dark.png")
+        : require("~/assets/images/theme-light.png");
     },
     changeTheme() {
       this.$colorMode.preference = this.$colorMode.value === "light" ? "dark" : "light";
