@@ -27,6 +27,10 @@ query Episodes  ($limit: Int!) {
     podcast {
       title
       slug
+      description
+      tags {
+        name
+      }
       schools {
         name
         short_name
@@ -34,4 +38,4 @@ query Episodes  ($limit: Int!) {
       }
     }
   }
-  }
+}

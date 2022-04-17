@@ -3,17 +3,7 @@
     <div
       class="min-h-full pt-8 pb-0 bg-gradient-to-br dark:from-blue-800 dark:to-blue-400 from-blue-400 to-blue-100;"
     >
-      <div class="z-0 font-montserrat">
-        <h1 class="font-bold text-8xl text-center">Podcasts</h1>
-      </div>
-      <div class="relative larghezza-fissa">
-        <img
-          class="z-10 mx-auto"
-          src="~/assets/images/ragazzo-cuffie-indica-v2.png"
-          alt=""
-          srcset=""
-        />
-      </div>
+      <HeroHeader h1="Podcasts" imgsrc="ragazzo-cuffie-indica-v2.png"></HeroHeader>
     </div>
     <main class="mt-16 larghezza-fissa">
       <img
@@ -70,7 +60,7 @@
         />
       </section>
       <!-- // If no podcast have been found -->
-      <div class="" v-if="episodes.length == 0">
+      <div class v-if="episodes.length == 0">
         <img
           src="~/assets/images/undraw_page_not_found_su7k.png"
           height="453"
@@ -168,7 +158,7 @@ $mq-desktop: "min-width: 630px";
   overflow: hidden;
   @media (min-width: 768px) {
     transform: skewX(10deg);
-    height: 32em;
+    height: 33em;
   }
   transition: flex-grow 0.2s, opacity 0.2s;
   &:before {
@@ -199,12 +189,11 @@ $mq-desktop: "min-width: 630px";
 
   .accordion-text {
     position: relative;
-    font-size: 4em;
+    font-size: 3em;
     text-align: center;
     padding-top: 1em;
     @media (min-width: 768px) {
-      padding-left: 2em;
-      transform: rotate(90deg) skewX(10deg) translateX(1em);
+      transform: rotate(90deg) skewX(10deg) translateX(3em);
     }
     transition: all 500ms ease;
   }
@@ -236,27 +225,35 @@ $mq-desktop: "min-width: 630px";
 .marconi {
   &:after {
     @apply bg-gradient-to-br
-      dark:from-blue-800
-      dark:to-blue-400
       from-blue-400
-      to-blue-100;
+      to-blue-100
+      dark:from-blue-800
+      dark:to-blue-400;
   }
 }
 
 .larosabianca {
   &:after {
-    @apply bg-gradient-to-br from-purple-400 to-purple-100 dark:from-purple-800 dark:to-purple-400;
+    @apply bg-gradient-to-br
+      from-purple-400
+      to-purple-100
+      dark:from-purple-800
+      dark:to-purple-400;
   }
   .accordion-text {
     @media (min-width: 768px) {
-      top: -2vh;
+      top: 0vh;
     }
   }
 }
 
 .tambosi {
   &:after {
-    @apply bg-gradient-to-br from-gray-400 to-gray-100 dark:from-gray-800 dark:to-gray-400;
+    @apply bg-gradient-to-br
+      from-gray-400
+      to-gray-100
+      dark:from-gray-800
+      dark:to-gray-400;
   }
 }
 </style>
@@ -267,10 +264,12 @@ import podcastsQuery from "~/apollo/queries/podcast/podcasts";
 import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
 
 import PodcastCard from "~/components/PodcastCard.vue";
+import HeroHeader from "~/components/HeroHeader.vue";
 
 export default {
   components: {
     PodcastCard,
+    HeroHeader,
   },
 
   data() {

@@ -3,17 +3,7 @@
     <div
       class="min-h-full pt-8 pb-0 bg-gradient-to-br from-gray-400 to-gray-100 dark:from-gray-800 dark:to-gray-400"
     >
-      <div class="relative larghezza-fissa">
-        <div class="z-0 font-montserrat">
-          <h1 class="font-bold text-8xl text-center">News</h1>
-        </div>
-        <img
-          class="z-10 mx-auto"
-          src="~/assets/images/ragazza-cuffie-esclama.png"
-          alt=""
-          srcset=""
-        />
-      </div>
+      <HeroHeader h1="News" imgsrc="ragazza-cuffie-esclama.png"></HeroHeader>
     </div>
     <main class="mt-16 larghezza-fissa">
       <img

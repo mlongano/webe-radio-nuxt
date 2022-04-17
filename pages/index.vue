@@ -3,18 +3,9 @@
     <main
       class="min-h-full pt-8 pb-8 bg-gradient-to-br dark:from-purple-800 dark:to-purple-400 from-purple-400 to-purple-100;"
     >
-      <div class="relative larghezza-fissa">
-        <div class="z-0 font-montserrat">
-          <h1 class="font-bold text-8xl text-center">WeBe</h1>
-          <h2 class="font-normal text-4xl uppercase text-center">Radio</h2>
-        </div>
-        <img
-          class="z-10 mx-auto"
-          src="~/assets/images/ragazza-cuffie-microfono-sorride.png"
-          alt
-        />
-      </div>
-      <div class="larghezza-fissa" v-html="spreakerEmbed" />
+      <HeroHeader h1="WeBE" h2="Radio" imgsrc="ragazza-cuffie-microfono-sorride.png">
+        <div class="larghezza-fissa" v-html="spreakerEmbed" />
+      </HeroHeader>
     </main>
 
     <!-- icona cuffiette -->
@@ -150,12 +141,14 @@ import homepageQuery from "~/apollo/queries/single/homepage";
 import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
 import EpisodesAudio from "~/components/EpisodesAudio.vue";
 import WebePlayer from "~/components/WebePlayer.vue";
+import HeroHeader from "~/components/HeroHeader.vue";
 
 export default {
   layout: "home",
   components: {
     EpisodesAudio,
     WebePlayer,
+    HeroHeader: HeroHeader,
   },
 
   data() {

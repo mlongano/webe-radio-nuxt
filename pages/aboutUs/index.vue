@@ -3,17 +3,10 @@
     <div
       class="min-h-full pt-8 pb-0 bg-gradient-to-br dark:from-blue-800 dark:to-blue-400 from-blue-400 to-blue-100;"
     >
-      <div class="relative largezza-fissa">
-        <div class="z-0 font-montserrat">
-          <h1 class="font-bold text-8xl text-center">Chi siamo?</h1>
-        </div>
-        <img
-          class="z-10 mx-auto"
-          src="~/assets/images/ragazza-treccie-cuffie-microfono-afferma.png"
-          alt=""
-          srcset=""
-        />
-      </div>
+      <HeroHeader
+        h1="Chi siamo?"
+        imgsrc="ragazza-treccie-cuffie-microfono-afferma.png"
+      ></HeroHeader>
     </div>
 
     <div class="pl-8 md:pl-32 lg:pl-60 mx-auto flex flex-row mic mt-16 larghezza-fissa">
@@ -21,7 +14,7 @@
         <div>
           <h2 class="mission">Mission</h2>
           <div class="flex flex-row items-center gap-8">
-            <img src="~/assets/images/hand-shake.png" alt="" width="60px" />
+            <img :src="handShake()" alt="" width="60px" />
             <p class="self-start">
               <strong>Coinvolgere</strong> giovani in azioni di socializzazione,
               informazione e comunicazione utilizzando le tecnologie digitali per favorire
@@ -31,7 +24,7 @@
           </div>
 
           <div class="flex flex-row items-center gap-8 mt-8">
-            <img src="~/assets/images/directions.png" alt="" width="60px" />
+            <img :src="directions()" alt="" width="60px" />
             <p>
               <strong>Orientare</strong> i giovani verso la cultura tecnologica in modo
               sano contribuendo a sviluppare quella capacità critica necessaria per
@@ -40,7 +33,7 @@
           </div>
 
           <div class="flex flex-row items-center gap-8 mt-8">
-            <img src="~/assets/images/questions.png" alt="" width="60px" />
+            <img :src="questions()" alt="" width="60px" />
             <p>
               <strong>Favorire</strong> lo sviluppo del dialogo e progettazione tra
               Istituti e docenti che condividono la necessità della sperimentazione di
@@ -217,6 +210,21 @@ export default {
       return this.$colorMode.value === "dark"
         ? require("~/assets/images/cuffie-filo-bianche.png")
         : require("~/assets/images/cuffie-filo-nere.png");
+    },
+    directions() {
+      return this.$colorMode.value === "dark"
+        ? require("~/assets/images/aboutDirections-dark.png")
+        : require("~/assets/images/aboutDirections-light.png");
+    },
+    handShake() {
+      return this.$colorMode.value === "dark"
+        ? require("~/assets/images/aboutHandShake-dark.png")
+        : require("~/assets/images/aboutHandShake-light.png");
+    },
+    questions() {
+      return this.$colorMode.value === "dark"
+        ? require("~/assets/images/aboutQuestions-dark.png")
+        : require("~/assets/images/aboutQuestions-light.png");
     },
   },
 };
