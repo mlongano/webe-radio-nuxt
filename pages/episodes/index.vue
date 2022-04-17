@@ -78,6 +78,7 @@ export default {
             } );
         },
         fuse () {
+            console.log(`recalcing fuse with ${this.threshold} threshold`);
             return new Fuse( this.episodes, {
                 keys: [ "title", "description", "date", "tags.name", "podcast.title", "podcast.description", "podcast.tags.name", "schools.name"],
                 threshold: this.threshold,
@@ -86,17 +87,18 @@ export default {
                 //includeMatches: true,
                 ignoreLocation: true,
                 ignoreFieldNorm: true,
-                minMatchCharLength: 2,
+                minMatchCharLength: 1,
                 useExtendedSearch: true,
             } );
         },
         results () {
-            if (this.searchQuery.length > 0) {
-
-                return this.fuse.search( `'${this.searchQuery}` );
-            } else {
-                return this.episodes;
+            console.log("I'M HERE");
+            if (this.searchQuery.length < 1) {
+                this.threshold = 1;
+                return this.fuse.search( "-" );
             }
+            this.threshold = 0.3;
+            return this.fuse.search( `'${this.searchQuery}` );
         },
 
         school () {
