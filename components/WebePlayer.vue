@@ -80,6 +80,7 @@ export default {
         anno: "",
         album: "",
       },
+      coverArtDiscogs: "",
       ascoltatori: 0,
       metaDataPolling: null,
       muted: false,
@@ -101,7 +102,7 @@ export default {
       return this.isPlaying ? mdiStopCircle : mdiPlayCircle;
     },
     defaultCover() {
-      return this.$coverSrc(this.$colorMode.value);
+      return this.$logoSrc(this.$colorMode.value);
     },
     title() {
       return this.songMetadata.titolo;
@@ -248,8 +249,8 @@ export default {
     },
 
     async fetchSongMetadata() {
-      //const response = await fetch("http://10.0.3.11:8000/status-json.xsl");
-      const response = await fetch("https://stream.webe.radio/status-json.xsl");
+      const response = await fetch("http://10.0.3.11:8000/status-json.xsl");
+      //const response = await fetch("https://stream.webe.radio/status-json.xsl");
       const data = await response.json();
       const metadataList = data?.icestats?.source?.title?.split(" - ");
       const metadataProps = ["titolo", "artista", "anno", "album"];

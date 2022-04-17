@@ -46,8 +46,8 @@ export default ( context, inject ) => {
     return "";
   }
 
-  const coverSrc = ( colorMode ) => {
-    console.log( `/images/logo-${colorMode === "dark" ? "dark" : "light"}.png` );
+  const logoSrc = ( colorMode ) => {
+    //console.log( `/images/logo-${colorMode === "dark" ? "dark" : "light"}.png` );
     return `/images/logo-${colorMode === "dark" ? "dark" : "light"}.png`;
   }
 
@@ -57,7 +57,7 @@ export default ( context, inject ) => {
   inject( 'spreakerEmbed', spreakerEmbed );
   inject( 'spreakerIframe', spreakerIframe );
   inject( 'audioPlayer', audioPlayer );
-  inject( 'coverSrc', coverSrc );
+  inject( 'logoSrc', logoSrc );
 
   // For Nuxt <= 2.12, also add 👇
   // context.$getStrapiImage = getStrapiImage;
