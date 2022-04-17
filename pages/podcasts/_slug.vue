@@ -20,7 +20,7 @@
       />
 
       <div>
-        <EpisodesList :podcast="podcasts[0]" />
+        <EpisodesList :episodes="podcasts[0].episodes" />
       </div>
       <div class="">
         <Tags :post="podcasts[0]" />

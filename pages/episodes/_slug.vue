@@ -1,45 +1,52 @@
 <template>
-      <main class="px-6" >
-        <BackButton />
+  <main class="larghezza-fissa px-6">
+    <BackButton />
 
-        <h1 class="text-2xl mb-6">
-          {{ episodes[0].title }}
-        </h1>
+    <h1 class="text-2xl mb-6">
+      {{ episodes[0].title }}
+    </h1>
 
-        <div>
-          <img
-            class="shadow-lg rounded-lg"
-            alt="Cover image"
-            v-if="episodes[0].cover"
-            :src="$getStrapiImage(episodes[0].cover.url)"
-          />
-        </div>
+    <markdown-it-vue class="text-gray-700 text-3xl p-2 mt-0.5" :content="description" ></markdown-it-vue>
 
-        <markdown-it-vue class="text-gray-700 text-4xl mt-10" :content="description" />
+    <div v-html="spreakerEmbed" />
+    <div class="w-max flex flex-row justify-items-center items-center shadow-lg" v-if="spreakerEmbed === '' && episodes[0]">
+        <img
+          class="w-36 shadow-lg rounded-lg pr-2"
+          alt="Cover image"
+          v-if="episodes[0].cover"
+          :src="$getStrapiImage(episodes[0].cover.url)"
+        />
+          <audio controls crossorigin playsinline class="audio w-full shadow-lg rounded-xl mr-2 dark:bg-white">
+            <source v-if="episodes[0].audio" :src="$getStrapiImage(episodes[0].audio.url)" type="audio/mp3" />
+          </audio>
+    </div>
 
-        <div class="">
-          <Tags :post="episodes[0]" />
-        </div>
+    <div class="">
+      <Tags :post="episodes[0]" />
+    </div>
 
-        <div v-html="spreakerEmbed" />
-      <EpisodesAudio v-if="spreakerEmbed === ''" :episodes="episodes" />
-      </main>
+  </main>
 </template>
+<style lang="postcss" scoped>
+  .audio {
+    background-color: #202f4d;
+  }
+</style>
 <script>
 import episodesQuery from "~/apollo/queries/episode/episode";
 import Tags from "~/components/Tags";
 import BackButton from "~/components/BackButton";
-import EpisodesAudio from "~/components/EpisodesAudio.vue";
+import MarkDown from "../../components/MarkDown.vue";
 
 export default {
   components: {
     Tags,
     BackButton,
-    EpisodesAudio,
-  },
-   data() {
+    MarkDown
+},
+  data() {
     return {
-        episodes: [{}]
+      episodes: [{}],
     };
   },
   apollo: {
@@ -60,16 +67,13 @@ export default {
           hid: this.episodes[0].slug,
           name: "description",
           content: this.episodes[0].description || "",
-        }
-      ]
+        },
+      ],
     };
   },
 
   computed: {
-    ep () {
-      return this.episodes;
-    },
-    spreakerEmbed () {
+    spreakerEmbed() {
       let episode = this.episodes[0];
       if (episode.spreaker_id) {
         return this.$spreakerIframe(
@@ -85,9 +89,6 @@ export default {
     description() {
       return this.episodes[0].description || "";
     },
-
-
   },
-
 };
 </script>

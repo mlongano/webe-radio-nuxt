@@ -1,5 +1,5 @@
 <template>
-  <div v-html="audioPlayer" class="px-6 pt-4 pb-2" />
+  <div v-html="audioPlayer" class="larghezza-fissa px-6 pt-4 pb-2" />
 </template>
 
 <style>

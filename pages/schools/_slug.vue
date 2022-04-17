@@ -1,28 +1,11 @@
 <template>
   <div class="">
-    <div
-      class="
-        hero
-        relative
-        bg-cover
-        bg-no-repeat
-      "
-    >
-      <div :class="$route.params.slug" class="itt-marconi hero-school relative">
-        <div
-          class="hero-text
-            font-montserrat
-            text-5xl
-            md:text-7xl
-            lg:text-9xl
-            text-center
-            pt-80
-            md:pt-128
-            lg:pt-176
-            pb-16
-          "
-        >
-          <h1 class="font-bold text-5xl md:text-7xl lg:text-9xl relative z-10 opacity-100" >{{school}}</h1>
+    <div class="hero relative bg-cover bg-no-repeat">
+      <div :class="$route.params.slug" class="hero-school relative">
+        <div class="hero-text font-montserrat text-5xl pb-16">
+          <h1 class="font-bold text-5xl relative z-10 opacity-100">
+            {{ school }}
+          </h1>
         </div>
       </div>
     </div>
@@ -31,27 +14,22 @@
     <form class="flex justify-center items-center px-4 md:px-6 lg:px-8 mt-12">
       <div class="relative">
         <input
-        class="h-14 w-72 lg:w-96 pr-8 pl-5 rounded-full z-0 dark:text-gray-700 shadow dark:shadow-inner focus:outline-none"
-        v-model="searchQuery"
-        type="search"
-        placeholder="Cerca..."
-      />
-      <div class="absolute top-4 right-3"> <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i> </div>
+          class="h-14 w-72 lg:w-96 pr-8 pl-5 rounded-full z-0 dark:text-gray-700 shadow dark:shadow-inner focus:outline-none"
+          v-model="searchQuery"
+          type="search"
+          placeholder="Cerca..."
+        />
+        <div class="absolute top-4 right-3">
+          <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
+        </div>
       </div>
     </form>
 
     <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-6 px-6">
-    <PodcastCard
-          v-for="podcast in filteredList"
-          :key="podcast.id"
-          :podcast="podcast"
-      />
+      <PodcastCard v-for="podcast in filteredList" :key="podcast.id" :podcast="podcast" />
     </section>
     <!-- // If no podcast have been found -->
-    <div
-      class=""
-      v-if="filteredList.length == 0"
-    >
+    <div class="" v-if="filteredList.length == 0">
       <img
         src="~/assets/images/undraw_page_not_found_su7k.png"
         height="453"
@@ -69,7 +47,6 @@
     @apply bg-gray-300;
   }
 }
-
 
 $accordion-item-amount: 5;
 $accordion-item-rotate: 15;
@@ -94,7 +71,7 @@ $mq-desktop: "min-width: 630px";
 }
 
 .accordion {
-    @apply flex flex-col w-full h-80 md:h-128 lg:h-176 mx-auto
+  @apply flex flex-col w-full h-80 md:h-128 lg:h-176 mx-auto;
 }
 
 .accordion-item {
@@ -127,7 +104,6 @@ $mq-desktop: "min-width: 630px";
     text-align: center;
     top: 3vh;
   }
-
 }
 
 .hero-school {
@@ -156,21 +132,17 @@ $mq-desktop: "min-width: 630px";
     transition: opacity 0.2s;
   }
   .hero-text {
-    position: relative;
-    font-size: 6vw;
+    padding-top: 4em;
+    font-size: 4rem;
     text-align: center;
-    top: 3vh;
   }
 }
-
-
 
 .itt-marconi {
   &:before {
     background-image: url("~/assets/images/marconiPodcast.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-
   }
   &:after {
     @apply bg-gradient-to-br
@@ -203,9 +175,6 @@ $mq-desktop: "min-width: 630px";
     @apply bg-gradient-to-br from-gray-400 to-gray-100 dark:from-gray-800 dark:to-gray-400;
   }
 }
-
-
-
 </style>
 <script>
 // Import the restaurants query
@@ -223,16 +192,15 @@ export default {
       podcasts: [],
       searchQuery: "",
       schoolsBackground: {
-          'itt-marconi': 'bg-marconi-podcast',
-          'la-rosa-bianca': 'bg-larosabianca-podcast',
-          'tambosi': 'bg-tambosi-podcast',
-          },
+        "itt-marconi": "bg-marconi-podcast",
+        "la-rosa-bianca": "bg-larosabianca-podcast",
+        tambosi: "bg-tambosi-podcast",
+      },
       schoolsName: {
-          'itt-marconi': 'Istituto Tecnico Tecnologico G. Marconi - Rovereto',
-          'la-rosa-bianca': 'Istituto di Istruzione "La Rosa Bianca"',
-          'tambosi': 'Istituto Tecnico Economico "A. Tambosi"',
-          },
-
+        "itt-marconi": "Istituto Tecnico Tecnologico G. Marconi - Rovereto",
+        "la-rosa-bianca": 'Istituto di Istruzione "La Rosa Bianca"',
+        tambosi: 'Istituto Tecnico Economico "A. Tambosi"',
+      },
     };
   },
   apollo: {
@@ -242,9 +210,7 @@ export default {
       variables() {
         return { school: this.$route.params.slug };
       },
-
     },
-
   },
   computed: {
     // Search system
@@ -254,11 +220,13 @@ export default {
       });
     },
     school() {
-        return this.podcasts[0]?.school?.name || this.schoolsName[this.$route.params.slug] || "";
+      return (
+        this.podcasts[0]?.school?.name || this.schoolsName[this.$route.params.slug] || ""
+      );
     },
     schoolBackground() {
-        return this.schoolsBackground[this.$route.params.slug] || "";
-    }
+      return this.schoolsBackground[this.$route.params.slug] || "";
+    },
   },
 };
 </script>

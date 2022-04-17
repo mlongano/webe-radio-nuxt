@@ -37,7 +37,7 @@
         />
         <p class="text-xs">Chi siamo</p>
       </NuxtLink>
-      <NuxtLink class="menu-item" to="/aboutUs" title="Cerca">
+      <NuxtLink class="menu-item" to="/episodes" title="Cerca">
         <img
           class="mx-2"
           :src="search()"
@@ -93,7 +93,7 @@ export default {
     };
   },
   computed: {
-    themColor() {
+    themeColor() {
       return this.$colorMode.value;
     },
   },

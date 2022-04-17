@@ -11,7 +11,7 @@
         <client-only>
         <markdown-it-vue class="text-gray-700 dark:text-gray-50 text-xs" :content="description" />
         </client-only>
-        <EpisodesList :podcast="podcast" />
+        <EpisodesList :episodes="podcast.episodes" />
         <Tags :post="podcast" />
         <NuxtLink
           class="link w-1/2 flex items-center justify-center rounded-md bg-black text-white"

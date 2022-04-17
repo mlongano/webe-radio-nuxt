@@ -2,7 +2,7 @@
     <div class="px-6 pt-4 pb-2">
       <NuxtLink
         class="episode-list"
-        v-for="episode in podcast.episodes"
+        v-for="episode in episodes"
         :key="episode.slug"
         :to="'/episodes/'+episode.slug"
       >
@@ -22,6 +22,6 @@
 </style>
 <script>
 export default {
-  props: ["podcast"],
+  props: ["episodes"],
 };
 </script>
