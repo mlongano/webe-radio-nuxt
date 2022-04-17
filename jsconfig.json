@@ -3,11 +3,18 @@
         "module": "commonjs",
         "target": "es6"
     },
+    "vueCompilerOptions": {
+        "experimentalDisableTemplateSupport": true
+    },
+    "include": [
+        "pages/**/*.vue",
+        "components/**/*.vue",
+        "layouts/**/*.vue",
+        "plugins/**/*.js"
+    ],
     "exclude": [
         "node_modules",
         "dist",
         ".nuxt"
     ],
-    "include": [
-    ]
 }
