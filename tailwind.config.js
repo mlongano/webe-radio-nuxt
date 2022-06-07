@@ -9,6 +9,9 @@ module.exports = {
       'sans': [ 'Montserrat', ...defaultTheme.fontFamily.sans ],
     },
     extend: {
+      fontSize: {
+        '3xl': '1.875rem',
+      },
       inset: {
         '1/10': '10%',
         '2/10': '20%',
