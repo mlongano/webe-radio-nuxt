@@ -1,14 +1,14 @@
 <template>
-  <div class="px-6">
+  <div class="larghezza-fissa px-6">
     <BackButton />
     <main>
-      <h1 class="text-2xl mb-6">
+      <h1 class="text-3xl mb-6 mx-auto text-center">
         {{ podcasts[0].title }}
       </h1>
 
       <div>
         <img
-          class="shadow-lg rounded-lg"
+          class="shadow-lg rounded-lg w-72 mb-8 mx-auto"
           alt="Cover image"
           v-if="podcasts[0].cover"
           :src="$getStrapiImage(podcasts[0].cover.url)"
@@ -27,10 +27,16 @@
       </div>
 
       <div v-html="spreakerEmbed" />
+      <EpisodesAudio class="mb-4" v-for="episode in podcasts[0].episodes" :key="episode.id"  :episode="episode" v-if="spreakerEmbed === ''"/>
+
     </main>
   </div>
 </template>
-
+<style scoped>
+.markdown-body {
+  font-size: 1.5rem;
+}
+</style>
 <script>
 import podcastsQuery from "~/apollo/queries/podcast/podcast";
 import Tags from "~/components/Tags";
@@ -78,27 +84,7 @@ export default {
           podcast.spreaker_limited
         );
       }
-      let episodes = "";
-      if (podcast.episodes) {
-        podcast.episodes.forEach((episode) => {
-          if (episode.audio?.url) {
-            episodes += `<li><vue-plyr options='{"title":"pippo"}'>
-                      <audio controls crossorigin playsinline class="w-full rounded-xl">
-                        <source
-                            src="${this.$getStrapiImage(episode.audio.url)}"
-                            type="audio/mp3"
-                        />
-                      </audio>
-                    </vue-plyr>
-                    <h2>${episode.title}</h2>
-                    </li>`;
-          }
-        });
-        if (episodes) {
-          episodes = `<ul>${episodes}</ul>`;
-        }
-      }
-      return episodes;
+      return "";
     },
     description() {
       return this.podcasts[0].description || "";

@@ -11,8 +11,11 @@
         <markdown-it-vue class="text-gray-700 dark:text-gray-50 text-xs" :content="description" />
         <Tags :post="episode" />
         <div class="flex items-center">
-            <img class="w-10 h-10 rounded-full mr-4" :src="$getStrapiImage(episode.cover.url)" :alt="episode.title">
+            <img class="w-16 h-16 rounded-full mr-4" :src="$getStrapiImage(episode.podcast.cover.url)" :alt="episode.title">
             <div class="text-sm">
+                <p class="link-inner font-semibold text-gray-900 dark:text-gray-50">
+                <NuxtLink :to='"/podcasts/"+episode.podcast.slug'>{{ episode.podcast.title }}</NuxtLink>
+                </p>
                 <ul>
                   <li v-for="school in episode.schools" :key="school.slug" class="link-inner text-gray-900 dark:text-gray-50 leading-none">
                       <NuxtLink :to='"/schools/"+school.slug'>{{ school.short_name }}</NuxtLink>
@@ -45,7 +48,7 @@
   position: relative;
   z-index: 1;
 }
-.link-inner:hover {
+.link-inner:hover, .link-inner:focus {
   @apply underline;
 }
 </style>

@@ -9,17 +9,7 @@
     <markdown-it-vue class="text-gray-700 text-3xl p-2 mt-0.5" :content="description" ></markdown-it-vue>
 
     <div v-html="spreakerEmbed" />
-    <div class="w-max flex flex-row justify-items-center items-center shadow-lg" v-if="spreakerEmbed === '' && episodes[0]">
-        <img
-          class="w-36 shadow-lg rounded-lg pr-2"
-          alt="Cover image"
-          v-if="episodes[0].cover"
-          :src="$getStrapiImage(episodes[0].cover.url)"
-        />
-          <audio controls crossorigin playsinline class="audio w-full shadow-lg rounded-xl mr-2 dark:bg-white">
-            <source v-if="episodes[0].audio" :src="$getStrapiImage(episodes[0].audio.url)" type="audio/mp3" />
-          </audio>
-    </div>
+    <EpisodesAudio :episode="episodes[0]" v-if="spreakerEmbed === '' && episodes[0]"/>
 
     <div class="">
       <Tags :post="episodes[0]" />
@@ -37,12 +27,14 @@ import episodesQuery from "~/apollo/queries/episode/episode";
 import Tags from "~/components/Tags";
 import BackButton from "~/components/BackButton";
 import MarkDown from "../../components/MarkDown.vue";
+import EpisodesAudio from "../../components/EpisodesAudio.vue";
 
 export default {
   components: {
     Tags,
     BackButton,
-    MarkDown
+    MarkDown,
+    EpisodesAudio
 },
   data() {
     return {

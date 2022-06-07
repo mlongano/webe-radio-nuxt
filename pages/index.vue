@@ -139,14 +139,12 @@
 // Import the restaurants query
 import homepageQuery from "~/apollo/queries/single/homepage";
 import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
-import EpisodesAudio from "~/components/EpisodesAudio.vue";
 import WebePlayer from "~/components/WebePlayer.vue";
 import HeroHeader from "~/components/HeroHeader.vue";
 
 export default {
   layout: "home",
   components: {
-    EpisodesAudio,
     WebePlayer,
     HeroHeader: HeroHeader,
   },
@@ -185,6 +183,17 @@ export default {
     },
 
     spreakerEmbed() {
+      /*
+      let iframe = this.$spreakerIframe(
+                "49902194",
+                "episode",
+                "200px",
+                this.$colorMode.value,
+                false,
+              );
+
+      return iframe;
+      */
       let numberOfEpisodes = this.episodes.length;
       let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
       let episode = this.episodes[selectedEpisode];

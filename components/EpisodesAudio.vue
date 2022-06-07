@@ -1,40 +1,34 @@
 <template>
-  <div v-html="audioPlayer" class="larghezza-fissa px-6 pt-4 pb-2" />
+    <div class="w-max flex flex-row justify-items-center items-center shadow-lg" >
+        <img
+          class="w-24 shadow-lg rounded-lg pr-2"
+          alt="Cover image"
+          v-if="episode.cover"
+          :src="$getStrapiImage(episode.cover.url)"
+        />
+        <div class="flex flex-col justify-between items-center h-full gap-4 mr-2">
+          <p>{{episode.title}}</p>
+          <audio controls crossorigin playsinline class="audio w-full shadow-lg rounded-xl mr-2 dark:bg-white">
+            <source v-if="episode.audio" :src="$getStrapiImage(episode.audio.url)" type="audio/mp3" />
+          </audio>
+        </div>
+    </div>
 </template>
 
-<style>
+<style lang="postcss" scoped>
 .episode-list {
   position: relative;
   z-index: 1;
 }
+
+  .audio {
+    background-color: #202f4d;
+  }
 </style>
 <script>
 export default {
-  props: ["episodes"],
+  props: ["episode"],
   computed: {
-    audioPlayer() {
-      let episodes = "";
-      if (this.episodes) {
-        this.episodes.forEach((episode) => {
-          if (episode.audio?.url) {
-            episodes += `<li><vue-plyr options='{"title":"pippo"}'>
-                      <audio controls crossorigin playsinline class="w-full rounded-xl">
-                        <source
-                            src="${this.$getStrapiImage(episode.audio.url)}"
-                            type="audio/mp3"
-                        />
-                      </audio>
-                    </vue-plyr>
-                    <h2>${episode.title}</h2>
-                    </li>`;
-          }
-        });
-        if (episodes) {
-          episodes = `<ul>${episodes}</ul>`;
-        }
-        return episodes;
-      }
-    },
   },
 };
 </script>
