@@ -249,8 +249,8 @@ export default {
     },
 
     async fetchSongMetadata() {
-      const response = await fetch("http://10.0.3.11:8000/status-json.xsl");
-      //const response = await fetch("https://stream.webe.radio/status-json.xsl");
+      //const response = await fetch("http://10.0.3.11:8000/status-json.xsl");
+      const response = await fetch("https://stream.webe.radio/status-json.xsl");
       const data = await response.json();
       const metadataList = data?.icestats?.source?.title?.split(" - ");
       const metadataProps = ["titolo", "artista", "anno", "album"];
