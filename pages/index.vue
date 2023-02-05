@@ -1,31 +1,22 @@
 <template>
   <div class="w-screen">
     <main
-      class="min-h-full pt-8 pb-8 bg-gradient-to-br dark:from-purple-800 dark:to-purple-400 from-purple-400 to-purple-100;"
-    >
-      <HeroHeader h1="WeBE" h2="Radio" imgsrc="ragazza-cuffie-microfono-sorride.png">
-        <div class="larghezza-fissa" v-html="spreakerEmbed" />
+      class="min-h-full pt-8 pb-8 bg-gradient-to-br dark:from-purple-800 dark:to-purple-400 from-purple-400 to-purple-100;">
+      <HeroHeader h1="WeBE" h2="Radio" imgsrc="ragazza-natalizia.png">
+      <!--
+        <div class="absolute top-[130px] right-0 bg-black opacity-80">
+          <img class="max-h-80" src="~/assets/images/palinsesto.png" alt="Palinsesto" />
+        </div>
+      -->
+      <div class="larghezza-fissa" v-html="spreakerEmbed" />
       </HeroHeader>
     </main>
 
     <!-- icona cuffiette -->
     <div class="larghezza-fissa my-20">
-      <img
-        v-if="isDarkTheme"
-        class="mx-auto"
-        src="~/assets/images/airpodsWhite.png"
-        alt="airpods"
-        width="80px"
-        height="80px"
-      />
-      <img
-        v-else
-        class="mx-auto"
-        src="~/assets/images/airpodsBlack.png"
-        alt="airpods"
-        width="80px"
-        height="80px"
-      />
+      <img v-if="isDarkTheme" class="mx-auto" src="~/assets/images/airpodsWhite.png" alt="airpods" width="80px"
+        height="80px" />
+      <img v-else class="mx-auto" src="~/assets/images/airpodsBlack.png" alt="airpods" width="80px" height="80px" />
     </div>
 
     <!-- player icecast -->
@@ -33,37 +24,18 @@
 
     <!-- qr code e link per l'app webe radio -->
     <div class="flex flex-row flex-wrap justify-center gap-8 mb-8">
-      <a
-        href="https://play.google.com/store/apps/details?id=com.newradio.weberadio"
-        class="store-badge"
-      >
-        <img
-          v-if="isDarkTheme"
-          class="h-full min-w-full object-cover align-bottom"
-          alt="Disponibile su Google Play"
-          src="~/assets/images/android-dark.svg"
-        />
+      <a href="https://play.google.com/store/apps/details?id=com.newradio.weberadio" class="store-badge">
+        <img v-if="isDarkTheme" class="h-full min-w-full object-cover align-bottom" alt="Disponibile su Google Play"
+          src="~/assets/images/android-dark.svg" />
 
-        <img
-          v-else
-          class="h-full min-w-full object-cover align-bottom"
-          alt="Disponibile su Google Play"
-          src="~/assets/images/android-light.svg"
-        />
+        <img v-else class="h-full min-w-full object-cover align-bottom" alt="Disponibile su Google Play"
+          src="~/assets/images/android-light.svg" />
       </a>
       <a href="https://apps.apple.com/it/app/webe-radio/id1609278287" class="store-badge">
-        <img
-          v-if="isDarkTheme"
-          class="h-full object-cover min-w-full align-bottom"
-          src="~/assets/images/apple-dark.svg"
-          alt="Disponibile su Apple Store"
-        />
-        <img
-          v-else
-          class="h-full object-cover min-w-full align-bottom"
-          src="~/assets/images/apple-light.svg"
-          alt="Disponibile su Apple Store"
-        />
+        <img v-if="isDarkTheme" class="h-full object-cover min-w-full align-bottom" src="~/assets/images/apple-dark.svg"
+          alt="Disponibile su Apple Store" />
+        <img v-else class="h-full object-cover min-w-full align-bottom" src="~/assets/images/apple-light.svg"
+          alt="Disponibile su Apple Store" />
       </a>
     </div>
 
@@ -93,43 +65,20 @@
       <div class="relative larghezza-fissa">
         <h2 class="uppercase text-2xl font-bold text-center mb-3">Le scuole</h2>
         <hr
-          class="border-gray-800 bg-gray-800 dark:bg-gray-50 dark:border-gray-50 border-solid h-2 w-2/3 mx-auto rounded-lg mb-6"
-        />
+          class="border-gray-800 bg-gray-800 dark:bg-gray-50 dark:border-gray-50 border-solid h-2 w-2/3 mx-auto rounded-lg mb-6" />
         <div class="flex flex-row flex-wrap justify-around gap-3">
           <a href="/schools/itt-marconi">
-            <img
-              class="img-scuole"
-              src="~/assets/images/marconiQuadrato.jpg"
-              alt="Marconi"
-            />
+            <img class="img-scuole" src="~/assets/images/marconiQuadrato.jpg" alt="Marconi" />
           </a>
           <a href="/schools/la-rosa-bianca">
-            <img
-              class="img-scuole"
-              src="~/assets/images/larosabiancaQuadrato.jpg"
-              alt="La Rosa Bianca"
-            />
+            <img class="img-scuole" src="~/assets/images/larosabiancaQuadrato.jpg" alt="La Rosa Bianca" />
           </a>
           <a href="/schools/ite-tambosi">
-            <img
-              class="img-scuole"
-              src="~/assets/images/tambosiQuadrato.jpg"
-              alt="Tambosi"
-            />
+            <img class="img-scuole" src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" />
           </a>
         </div>
-        <img
-          v-if="isDarkTheme"
-          class="mx-auto mt-4 mb-4"
-          src="~/assets/images/loghiBgBlack.png"
-          alt="loghi"
-        />
-        <img
-          v-else
-          class="mx-auto bottom-4"
-          src="~/assets/images/loghiBgWhite.png"
-          alt="loghi"
-        />
+        <img v-if="isDarkTheme" class="mx-auto mt-4 mb-4" src="~/assets/images/loghiBgBlack.png" alt="loghi" />
+        <img v-else class="mx-auto bottom-4" src="~/assets/images/loghiBgWhite.png" alt="loghi" />
       </div>
     </footer>
   </div>
