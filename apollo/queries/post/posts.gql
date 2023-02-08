@@ -18,6 +18,7 @@ query Posts {
           }
         }
         tags {
+          id
           data {
             attributes {
               name

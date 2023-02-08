@@ -18,6 +18,7 @@ query Posts($slug: String!) {
         }
         tags {
           data {
+            id
             attributes {
               name
               posts {

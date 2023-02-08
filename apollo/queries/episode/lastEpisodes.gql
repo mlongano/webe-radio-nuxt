@@ -51,6 +51,7 @@ query Episodes($limit: Int!) {
               description
               tags {
                 data {
+                  id
                   attributes {
                     name
                   }

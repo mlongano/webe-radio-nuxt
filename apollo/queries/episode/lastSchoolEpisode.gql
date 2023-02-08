@@ -16,6 +16,7 @@ query Episodes($school: String!, $limit: Int!) {
         spreaker_limited
         tags {
           data {
+            id
             attributes {
               name
             }

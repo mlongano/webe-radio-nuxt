@@ -32,6 +32,7 @@ query Podcasts($school: String!) {
         }
         tags {
           data {
+            id
             attributes {
               name
             }

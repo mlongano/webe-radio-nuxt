@@ -1,0 +1,27 @@
+query Schools {
+  schools {
+    data {
+      attributes {
+        name
+        description
+        logo {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        short_name
+        image {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        slug
+
+      }
+    }
+  }
+}

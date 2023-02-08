@@ -12,6 +12,7 @@ query Episodes($slug: String!) {
         spreaker_limited
         tags {
           data {
+            id
             attributes {
               name
             }

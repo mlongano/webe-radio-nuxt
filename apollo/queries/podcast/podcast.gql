@@ -36,6 +36,7 @@ query Podcasts($slug: String!) {
         }
         tags {
           data {
+            id
             attributes {
               name
             }

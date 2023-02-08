@@ -1,33 +1,57 @@
-query Tags ($name: String!) {
-  tags (where: {name: $name}) {
-    id
-    name
-    episodes {
+query Tags($name: String!) {
+  tags(filters: { name: { eq: $name } }) {
+    data {
       id
-      title
-      slug
-      created_at
-      updated_at
-      date
-      description
-      cover {
-        url
-      }
-    }
-    podcasts (sort: "date:desc") {
-      id
-      title
-      slug
-      created_at
-      updated_at
-      date
-      description
-      cover {
-        url
-      }
-      episodes {
-        title
-        slug
+      attributes {
+        name
+        episodes {
+          data {
+            id
+            attributes {
+              title
+              slug
+              createdAt
+              updatedAt
+              date
+              description
+              cover {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        podcasts(sort: "date:desc") {
+          data {
+            id
+            attributes {
+              title
+              slug
+              createdAt
+              updatedAt
+              date
+              description
+              cover {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              episodes {
+                data {
+                  attributes {
+                    title
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

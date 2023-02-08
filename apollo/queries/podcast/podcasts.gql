@@ -27,6 +27,7 @@ query Podcasts {
         }
         tags {
           data {
+            id
             attributes {
               name
             }
