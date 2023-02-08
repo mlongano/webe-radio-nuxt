@@ -4,7 +4,7 @@ module.exports = {
             extensions: {
                 endpoints: {
                     default: {
-                        url: "https://api.webe.radio/graphql",
+                        url: process.env.NUXT_ENV_API_URI + "/graphql",
                     }
                 }
             }

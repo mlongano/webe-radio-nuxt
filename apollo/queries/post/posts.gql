@@ -1,18 +1,30 @@
 query Posts {
   posts(sort: "date:desc") {
-    id
-    title
-    subtitle
-    slug
-    date
-    article
-    image {
-      url
-      width
-      height
-    }
-    tags {
-      name
+    data {
+      id
+      attributes {
+        title
+        subtitle
+        slug
+        date
+        article
+        image {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        tags {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+      }
     }
   }
 }

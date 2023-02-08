@@ -1,45 +1,82 @@
-query Episodes  ($limit: Int!) {
-  episodes (limit:$limit, sort: "date:desc") {
-    id
-    title
-    slug
-    episode_number
-    date
-    description
-    spreaker_id
-    spreaker_limited
-    tags {
-      name
-    }
-    cover {
-      url
-      width
-      height
-    }
-    audio {
-      url
-    }
-    schools {
-      name
-      short_name
-      slug
-    }
-    podcast {
-      title
-      slug
-      description
-      tags {
-        name
-      }
-      cover {
-        url
-        width
-        height
-      }
-      schools {
-        name
-        short_name
+query Episodes($limit: Int!) {
+  episodes(pagination: { limit: $limit }, sort: "date:desc") {
+    data {
+      id
+      attributes {
+        title
         slug
+        episode_number
+        date
+        description
+        spreaker_id
+        spreaker_limited
+        tags {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+
+        cover {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        audio {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        schools {
+          data {
+            attributes {
+              name
+              short_name
+              slug
+            }
+          }
+        }
+        podcast {
+          data {
+            attributes {
+              title
+              slug
+              description
+              tags {
+                data {
+                  attributes {
+                    name
+                  }
+                }
+              }
+              cover {
+                data {
+                  attributes {
+                    url
+                    width
+                    height
+                  }
+                }
+              }
+              schools {
+                data {
+                  attributes {
+                    name
+                    short_name
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

@@ -1,28 +1,48 @@
 query Podcasts {
-  podcasts (sort: "date:desc") {
-    id
-    title
-    slug
-    date
-    description
-    spreaker_id
-    spreaker_limited
-    schools {
-      name
-    }
-    cover {
-      url
-      width
-      height
-    }
-    tags {
-      name
-    }
-    episodes (sort: "date:desc") {
+  podcasts(sort: "date:desc") {
+    data {
       id
-      title
-      slug
+      attributes {
+        title
+        slug
+        date
+        description
+        spreaker_id
+        spreaker_limited
+        schools {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        cover {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        tags {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        episodes(sort: "date:desc") {
+          data {
+            id
+            attributes {
+              title
+              slug
+            }
+          }
+        }
+        distribution
+      }
     }
-    distribution
   }
 }

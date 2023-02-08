@@ -1,32 +1,60 @@
-query Episodes  ($school: String!, $limit: Int!) {
-  episodes (limit:$limit, where:{podcast:{schools: {slug :$school}}}, sort: "date:desc") {
-    id
-    title
-    slug
-    episode_number
-    date
-    description
-    spreaker_id
-    spreaker_limited
-    tags {
-      name
-    }
-    cover {
-      url
-      width
-      height
-    }
-    audio {
-      url
-    }
-    podcast {
-      title
-      slug
-      schools {
-        name
-        short_name
+query Episodes($school: String!, $limit: Int!) {
+  episodes(
+    pagination: { limit: $limit }
+    filters: { podcast: { schools: { slug: { eq: $school } } } }
+    sort: "date:desc"
+  ) {
+    data {
+      id
+      attributes {
+        title
         slug
+        episode_number
+        date
+        description
+        spreaker_id
+        spreaker_limited
+        tags {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        cover {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        audio {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        podcast {
+          data {
+            attributes {
+              title
+              slug
+              schools {
+                data {
+                  attributes {
+                    name
+                    short_name
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
-  }
+}

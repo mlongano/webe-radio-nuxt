@@ -1,12 +1,24 @@
 query AboutUS {
   aboutUs {
-    title
-    about
-    cover {
-      url
-    }
-    attachment {
-      url
+    data {
+      attributes {
+        title
+        about
+        cover {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        attachment {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
     }
   }
 }

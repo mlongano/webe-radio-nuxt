@@ -1,14 +1,15 @@
 query Global {
   global {
-    site_name
-    favicon {
-      url
-    }
-    default_seo {
-      meta_title
-      meta_description
-      share_image {
-        url
+    data {
+      attributes {
+        site_name
+        favicon {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
       }
     }
   }

@@ -1,32 +1,56 @@
 query Podcasts($slug: String!) {
-  podcasts(where: {slug: $slug}) {
-    id
-    title
-    slug
-    date
-    description
-    spreaker_id
-    spreaker_limited
-    episodes (sort: "date:desc") {
+  podcasts(filters: { slug: { eq: $slug } }) {
+    data {
       id
-      title
-      description
-      slug
-      episode_number
-      cover {
-        url
+      attributes {
+        title
+        slug
+        date
+        description
+        spreaker_id
+        spreaker_limited
+        episodes(sort: "date:desc") {
+          data {
+            id
+            attributes {
+              title
+              description
+              slug
+              episode_number
+              cover {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              audio {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+        tags {
+          data {
+            attributes {
+              name
+            }
+          }
+        }
+        cover {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
       }
-      audio {
-        url
-      }
-    }
-    tags {
-      name
-    }
-    cover {
-      url
-      width
-      height
     }
   }
 }

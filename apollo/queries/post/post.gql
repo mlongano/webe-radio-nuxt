@@ -1,20 +1,36 @@
 query Posts($slug: String!) {
-  posts (where: {slug: $slug}) {
-    id
-    slug
-    title
-    subtitle
-    article
-    image {
-      url
-      width
-      height
-    }
-    tags {
-      name
-      posts {
-        title
+  posts (filters: {slug: {eq: $slug} } ){
+    data {
+      id
+      attributes {
         slug
+        title
+        subtitle
+        article
+        image {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        tags {
+          data {
+            attributes {
+              name
+              posts {
+                data {
+                  attributes {
+                    title
+                    slug
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
