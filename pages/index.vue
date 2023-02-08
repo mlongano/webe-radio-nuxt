@@ -146,9 +146,10 @@ export default {
 
       return iframe;
       */
-      let numberOfEpisodes = this.episodes.length;
+      console.log(JSON.stringify(this.episodes.data,null,2));
+      let numberOfEpisodes = this.episodes?.data.length;
       let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
-      let episode = this.episodes[selectedEpisode];
+      let episode = this.episodes?.data[selectedEpisode].attributes;
       if (episode?.spreaker_id) {
         let iframe = this.$spreakerIframe(
           episode.spreaker_id,
@@ -158,7 +159,7 @@ export default {
           episode.spreaker_limited
         );
         return iframe;
-      } else if (episode?.audio?.url) {
+      } else if (episode?.audio?.data.attributes.url) {
         return this.$audioPlayer(episode);
       }
       return "";
@@ -197,12 +198,11 @@ audio {
 
 div >>> iframe {
   border-radius: 0.75rem;
-  background-color: rgba(255, 255, 255, 0.85);
+  /* background-color: rgba(255, 255, 255, 0.85); */
   --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000),
     var(--tw-shadow);
-}
-div >>> iframe {
   background-color: #a78bfa;
+
 }
 </style>
