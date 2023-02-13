@@ -19,12 +19,12 @@
                 </div>
             </form>
 
-            <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-6 px-6">
-                <EpisodeCard v-for="result in results" :key="result.item.id" :episode="result.item" />
+            <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-6 px-6" v-if="results">
+                <EpisodeCard v-for="result in results" :key="result.id" :episode="result" />
             </section>
             <!-- // If no podcast have been found -->
             <div class="" v-if="results.length === 0">
-                <img src="~/assets/images/undraw_page_not_found_su7k.png" height="453" width="800" />
+                <img src="~/assets/images/undraw_page_not_found_su7k.png" height="453" width="800" alt="Not Found" />
                 <p>No episodes found</p>
             </div>
         </main>
@@ -72,15 +72,11 @@ export default {
     },
     computed: {
         // Search system
-        filteredList () {
-            return this.episodes.filter( ( episode ) => {
-                return JSON.stringify( episode ).toLowerCase().includes( this.searchQuery.toLowerCase() );
-            } );
-        },
         fuse () {
-            console.log(`recalcing fuse with ${this.threshold} threshold`);
-            return new Fuse( this.episodes, {
-                keys: [ "title", "description", "date", "tags.name", "podcast.title", "podcast.description", "podcast.tags.name", "schools.name"],
+            //console.log(`recalcing fuse with ${this.threshold} threshold`);
+            //console.log(this.episodes?.data);
+            return new Fuse( this.episodes?.data, {
+                keys: [ "attributes.title", "attributes.description", "attributes.date", "attributes.podcast.data.attributes.title", "attributes.podcast.data.attributes.description"],
                 threshold: this.threshold,
                 shouldSort: false,
                 //includeScore: true,
@@ -92,13 +88,20 @@ export default {
             } );
         },
         results () {
-            console.log("I'M HERE");
-            if (this.searchQuery.length < 1) {
+            //console.log( this.searchQuery );
+            if ( this.searchQuery.length < 1 ) {
+                const queryResults = this.fuse.search( "-" );
                 this.threshold = 1;
-                return this.fuse.search( "-" );
+                return queryResults.map( ( result ) => {
+                    return result.item;
+                } );
             }
-            this.threshold = 0.3;
-            return this.fuse.search( `'${this.searchQuery}` );
+            this.threshold = 0;
+            const queryResults = this.fuse.search( this.searchQuery );
+            //console.log( queryResults.length);
+            return queryResults.map( ( result ) => {
+                return result.item;
+            } );
         },
 
         school () {
@@ -163,14 +166,9 @@ export default {
         return "";
         },
 
-        getEpisodes(school) {
-        this.episodesFiltred = this.episodes.filter((episode) => {
-            return episode.school.slug === school;
-        });
-        },
     },
     mounted() {
-        this.$nextTick(() => this.$refs.searchbar.focus());
+        this.$nextTick(() => this.$refs.searchbar?.focus());
     }
 
 };

@@ -18,8 +18,8 @@ query Posts {
           }
         }
         tags {
-          id
           data {
+            id
             attributes {
               name
             }

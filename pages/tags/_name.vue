@@ -18,19 +18,30 @@
         </div>
       </form>
 
-      <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-6">
+<!--       <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-6">
         <PodcastCard
           v-for="podcast in filteredList"
           :key="podcast.id"
           :podcast="podcast"
         />
       </section>
-      <!-- // If no podcast have been found -->
-      <div class="" v-if="filteredList.length == 0">
+ -->
+      <div class="flex flex-col flex-wrap md:flex-row gap-3 mt-6" v-if="filteredList">
+        <div
+          v-for="podcast in filteredList"
+          :key="podcast.id"
+          :podcast="podcast"
+        >
+        <PodcastCard :podcast="podcast" />
+        </div>
+      </div>
+ <!-- // If no podcast have been found -->
+      <div class="flex justify-center items-center flex-col mt-8" v-if="!filteredList || filteredList.length == 0">
         <img
           src="~/assets/images/undraw_page_not_found_su7k.png"
           height="453"
           width="800"
+          alt="No Podcast found"
         />
         <p>No Podcast found</p>
       </div>
@@ -63,9 +74,9 @@ export default {
   },
   data() {
     return {
-      tags: [{
-        podcasts:[]
-      }],
+      tags: {
+        data: [],
+      },
       searchQuery: "",
     };
   },
@@ -79,12 +90,10 @@ export default {
     },
   },
   computed: {
-    description() {
-      return this.podcasts[0].description || "";
-    },
     filteredList() {
-      return this.tags[0].podcasts.filter((podcast) => {
-        return podcast.title
+      if (!this.tags?.data) return [];
+      return this.tags?.data[0]?.attributes.podcasts.data.filter((podcast) => {
+        return podcast.attributes.title
           .toLowerCase()
           .includes(this.searchQuery.toLowerCase());
       });

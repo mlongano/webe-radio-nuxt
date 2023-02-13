@@ -3,15 +3,15 @@
     <BackButton />
     <main>
       <h1 class="text-2xl mb-6">
-        {{ posts[0].title }}
+        {{ posts.data[0].attributes.title }}
       </h1>
 
       <div>
         <img
           class="shadow-lg rounded-lg max-w-prose"
           alt="Article image"
-          v-if="posts[0].image"
-          :src="$getStrapiImage(posts[0].image.url)"
+          v-if="posts.data[0].attributes.image"
+          :src="$getStrapiImage(posts.data[0].attributes.image.data.attributes.url)"
         />
       </div>
       <markdown-it-vue
@@ -19,11 +19,11 @@
         :content="article"
       />
 
-      <div>
+      <div v-if="related">
         <PostList :posts="related" />
       </div>
       <div class="">
-        <Tags :post="posts[0]" />
+        <Tags :post="posts.data[0]" />
       </div>
     </main>
   </div>
@@ -61,19 +61,20 @@ export default {
   },
   computed: {
     article() {
-      let article = this.posts[0].article || "";
+      let article = this.posts?.data[0]?.attributes?.article || "";
       return article;
     },
     related() {
-      let tags = this.posts[0].tags;
+      let tags = this.posts?.data[0]?.attributes?.tags;
       let currentPost = JSON.stringify({
-          title: this.posts[0].title,
-          slug: this.posts[0].slug,
+          title: this.posts?.data[0]?.attributes?.title,
+          slug: this.posts?.data[0]?.attributes?.slug,
           __typename:"Post",
           });
       let posts = [];
-      tags.forEach((tag) => {
-        posts.push(...tag.posts);
+      if (!tags?.data) return posts;
+      tags.data.forEach((tag) => {
+        posts.push(...tag?.attributes?.posts?.data);
       });
 
       posts = Array.from(

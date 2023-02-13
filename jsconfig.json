@@ -3,9 +3,6 @@
         "module": "commonjs",
         "target": "es6"
     },
-    "vueCompilerOptions": {
-        "experimentalDisableTemplateSupport": true
-    },
     "include": [
         "pages/**/*.vue",
         "components/**/*.vue",

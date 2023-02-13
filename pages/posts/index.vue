@@ -42,11 +42,12 @@
         <PostCard v-for="post in filteredList" :key="post.id" :post="post" />
       </section>
       <!-- // If no post have been found -->
-      <div class="" v-if="filteredList.length == 0">
+      <div class="" v-if="filteredList && filteredList.length == 0">
         <img
           src="~/assets/images/undraw_page_not_found_su7k.png"
           height="453"
           width="800"
+          alt="No Post found"
         />
         <p>No Post found</p>
       </div>
@@ -88,8 +89,8 @@ export default {
   computed: {
     // Search system
     filteredList() {
-      return this.posts.filter((post) => {
-        return post.title.toLowerCase().includes(this.searchQuery.toLowerCase());
+      return this.posts?.data?.filter((post) => {
+        return post.attributes.title.toLowerCase().includes(this.searchQuery.toLowerCase());
       });
     },
     isDarkTheme() {

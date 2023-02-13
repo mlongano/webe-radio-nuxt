@@ -28,7 +28,7 @@ export default ( context, inject ) => {
   }
 
   const audioPlayer = ( episode ) => {
-    if ( episode?.audio?.url ) {
+    if ( episode?.attributes?.audio?.data?.attributes.url ) {
       let audio = `<vue-plyr style="flex:2;" options='{"title":"pippo"}'>
                       <audio controls crossorigin playsinline class="w-full rounded-xl">
                         <source
@@ -37,8 +37,8 @@ export default ( context, inject ) => {
                         />
                       </audio>
                     </vue-plyr>`;
-      let title = `<h2><a href="/episodes/${episode.slug}">${episode.title}</a></h2>`;
-      let img = `<img class="rounded-xl" src="${process.env.apiUri + episode.cover.url}" width="200">`;
+      let title = `<h2><a href="/episodes/${episode.slug}">${episode.attributes.title}</a></h2>`;
+      let img = `<img class="rounded-xl" src="${process.env.apiUri + episode.attributes.cover.data.attributes.url}" width="200">`;
       return `<div class="flex flex-row w-full gap-2 justify-items-center items-center">
                   ${img} <div class="flex flex-col" style="flex:2;"> ${title + audio} </div>
                 </div>`;

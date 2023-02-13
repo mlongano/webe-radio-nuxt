@@ -2,12 +2,12 @@
   <header
     class="flex flex-row flex-wrap justify-between items-begins lg:items-left lg:space-x-4 py-6 px-3 relative larghezza-fissa"
   >
-    <NuxtLink class="" to="/">
+    <a class="" href="/">
       <img class="mr-1" :src="logo()" alt="Logo" width="80px" height="50px" />
-    </NuxtLink>
+    </a>
 
     <nav class="flex flex-row justify-items-center">
-      <NuxtLink class="menu-item" to="/podcasts" title="Podcasts">
+      <a class="menu-item" href="/podcasts" title="Podcasts">
         <img
           class="mx-2"
           :src="podcasts()"
@@ -16,8 +16,8 @@
           :height="iconMenuSize"
         />
         <p class="text-xs">Podcasts</p>
-      </NuxtLink>
-      <NuxtLink class="menu-item" to="/posts" title="Blog">
+      </a>
+      <a class="menu-item" href="/posts" title="Blog">
         <img
           class="mx-2"
           :src="news()"
@@ -26,8 +26,8 @@
           :height="iconMenuSize"
         />
         <p class="text-xs">News</p>
-      </NuxtLink>
-      <NuxtLink class="menu-item" to="/aboutUs" title="Chi siamo">
+      </a>
+      <a class="menu-item" href="/aboutUs" title="Chi siamo">
         <img
           class="mx-2"
           :src="about()"
@@ -36,8 +36,8 @@
           :height="iconMenuSize"
         />
         <p class="text-xs">Chi siamo</p>
-      </NuxtLink>
-      <NuxtLink class="menu-item" to="/episodes" title="Cerca">
+      </a>
+      <a class="menu-item" href="/episodes" title="Cerca">
         <img
           class="mx-2"
           :src="search()"
@@ -46,7 +46,7 @@
           :height="iconMenuSize"
         />
         <p class="text-xs">&nbsp;</p>
-      </NuxtLink>
+      </a>
     </nav>
     <button @click="changeTheme" class="menu-item">
       <img
@@ -99,6 +99,7 @@ export default {
   },
   methods: {
     logo() {
+      console.log("colorMode: ",this.$colorMode.value);
       return this.$colorMode.value === "dark"
         ? require("~/assets/images/logoWhite.png")
         : require("~/assets/images/logoBlack.png");

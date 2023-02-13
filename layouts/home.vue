@@ -1,9 +1,8 @@
 <template>
-  <div v-if="!$colorMode.unknown || isColorModeTimedOut">
+  <div>
     <Header />
     <Nuxt />
   </div>
-  <Loading v-else class="bg-white dark:bg-dark-blue">Loading...</Loading>
 </template>
 
 <script>
@@ -20,14 +19,6 @@ export default {
     };
   },
   mounted() {
-    setTimeout(() => {
-      this.isColorModeTimedOut = true;
-      if (this.$colorMode.value !== "dark") {
-        this.$colorMode.preference = "light";
-      } else {
-        this.$colorMode.preference = "dark";
-      }
-    }, 1000);
   },
 };
 </script>

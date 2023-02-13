@@ -146,10 +146,10 @@ export default {
 
       return iframe;
       */
-      console.log(JSON.stringify(this.episodes.data,null,2));
-      let numberOfEpisodes = this.episodes?.data.length;
+      //console.log(JSON.stringify(this.episodes.data,null,2));
+      let numberOfEpisodes = this.episodes?.data?.length || 0;
       let selectedEpisode = Math.floor(Math.random() * numberOfEpisodes);
-      let episode = this.episodes?.data[selectedEpisode].attributes;
+      let episode = (this.episodes?.data && this.episodes?.data[selectedEpisode].attributes) || {};
       if (episode?.spreaker_id) {
         let iframe = this.$spreakerIframe(
           episode.spreaker_id,
@@ -159,7 +159,7 @@ export default {
           episode.spreaker_limited
         );
         return iframe;
-      } else if (episode?.audio?.data.attributes.url) {
+      } else if (episode?.audio?.data?.attributes.url) {
         return this.$audioPlayer(episode);
       }
       return "";

@@ -1,16 +1,16 @@
 <template>
     <div class="px-6 pt-4 pb-2">
-      <NuxtLink
+      <a
         class="episode-list"
-        v-for="episode in episodes"
-        :key="episode.slug"
-        :to="'/episodes/'+episode.slug"
+        v-for="episode in episodes.data"
+        :key="episode.attributes.slug"
+        :href="'/episodes/'+episode.attributes.slug"
       >
         <span
           class="inline-block text-white dark:text-white dark:bg-indigo-900 bg-blue-600 rounded-full px-3 py-1 text-sm font-semibold  mr-2 mb-2"
-          >{{ episode.title }}</span
+          >{{ episode.attributes.title }}</span
         >
-      </NuxtLink>
+      </a>
     </div>
 </template>
 

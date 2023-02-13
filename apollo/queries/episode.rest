@@ -1,38 +1,61 @@
 
-@baseUrl = http://api.webe.radio:1338/graphql
+@baseUrl = https://api.webe.radio/graphql
 ###
 POST {{baseUrl}} HTTP/1.1
 Content-Type: application/json
 X-REQUEST-TYPE: GraphQL
 
-query Episodes {
-  episodes {
-    id
-    title
-    slug
-    episode_number
-    date
-    description
-    spreaker_id
-    spreaker_limited
-    tags {
-      name
-    }
-    cover {
-      url
-      width
-      height
-    }
-    audio {
-      url
-    }
-    podcast {
+query Episodes($slug: String!) {
+  episodes(filters: {slug: {eq: $slug } } ) {
+    data {
       id
-      title
-      slug
+      attributes {
+        title
+        slug
+        episode_number
+        date
+        description
+        spreaker_id
+        spreaker_limited
+        tags {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
+        cover {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        audio {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+        podcast {
+          data {
+            attributes {
+              title
+              slug
+            }
+          }
+        }
+      }
     }
   }
 }
+
+{"slug":"fake-news-in-the-present"}
+
 
 ###
 # @name pippo
@@ -106,4 +129,41 @@ query Episodes($slug: String!) {
 
 {
   "slug": "{{ep2}}"
+}
+
+###
+POST {{baseUrl}}
+Content-Type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query Posts {
+  posts(sort: "date:desc") {
+    data {
+      id
+      attributes {
+        title
+        subtitle
+        slug
+        date
+        article
+        image {
+          data {
+            attributes {
+              url
+              width
+              height
+            }
+          }
+        }
+        tags {
+          data {
+            id
+            attributes {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
 }

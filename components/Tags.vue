@@ -1,18 +1,18 @@
 <template>
   <ClientOnly>
-    <div class="px-6 pt-4 pb-2">
+    <div class="px-6 pt-4 pb-2" v-if="tags && tags.data && tags.data.length > 0">
       <NuxtLink
-        class="podcast-tag"
-        v-for="tag in post.tags"
+        class="episode-list"
+        v-for="tag in tags.data"
         :key="tag.id"
-        :to='"/tags/"+tag.name'
+        :to="'/tags/'+tag.attributes.name"
       >
         <span
           class="hover:underline inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-          >#{{ tag.name }}</span
+          >{{ tag.attributes.name }}</span
         >
       </NuxtLink>
-    </div>
+  </div>
   </ClientOnly>
 </template>
 
@@ -24,7 +24,13 @@
 </style>
 <script>
 export default {
-  props: ["post"],
+  props: [ "post" ],
+  computed: {
+    tags () {
+      //console.log(JSON.stringify(this.post.attributes.tags,null,2));
+      return this.post.attributes.tags;
+    }
+  }
 };
 </script>
 

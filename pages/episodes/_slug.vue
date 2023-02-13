@@ -1,21 +1,19 @@
 <template>
-  <main class="larghezza-fissa px-6">
+  <main class="larghezza-fissa px-6" v-if="episodes && episodes.data && episodes.data[0]">
     <BackButton />
 
     <h1 class="text-2xl mb-6">
-      {{ episodes[0].title }}
+      {{ episodes.data[0].attributes.title }}
     </h1>
 
     <markdown-it-vue class="text-gray-700 text-3xl p-2 mt-0.5" :content="description" ></markdown-it-vue>
-
     <div v-html="spreakerEmbed" />
-    <EpisodesAudio :episode="episodes[0]" v-if="spreakerEmbed === '' && episodes[0]"/>
+    <EpisodesAudio :episode="episodes.data[0].attributes" v-if="spreakerEmbed === ''"/>
 
     <div class="">
-      <Tags :post="episodes[0]" />
+      <Tags :post="episodes.data[0]" />
     </div>
-
-  </main>
+</main>
 </template>
 <style lang="postcss" scoped>
   .audio {
@@ -38,7 +36,7 @@ export default {
 },
   data() {
     return {
-      episodes: [{}],
+      episodes: {},
     };
   },
   apollo: {
@@ -52,13 +50,13 @@ export default {
   },
   head() {
     return {
-      title: this.episodes[0].title,
+      title: this.episodes?.data[0]?.attributes.title,
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: this.episodes[0].slug,
+          hid: this.episodes?.data[0]?.attributes.slug,
           name: "description",
-          content: this.episodes[0].description || "",
+          content: this.episodes?.data[0]?.attributes.description || "",
         },
       ],
     };
@@ -66,7 +64,8 @@ export default {
 
   computed: {
     spreakerEmbed() {
-      let episode = this.episodes[0];
+      //console.log(this.episodes?.data[0]?.attributes);
+      let episode = this.episodes?.data[0]?.attributes;
       if (episode.spreaker_id) {
         return this.$spreakerIframe(
           episode.spreaker_id,
@@ -79,7 +78,7 @@ export default {
       return "";
     },
     description() {
-      return this.episodes[0].description || "";
+      return this.episodes?.data[0]?.attributes.description || "";
     },
   },
 };

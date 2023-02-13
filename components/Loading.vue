@@ -1,5 +1,7 @@
+import { ContentLoader } from 'vue-content-loader'
+
 <template>
   <div class="flex h-screen">
-    <RotateSquare2 class="m-auto bg-white dark:bg-dark-blue" />
+    <content-loader></content-loader>
   </div>
 </template>

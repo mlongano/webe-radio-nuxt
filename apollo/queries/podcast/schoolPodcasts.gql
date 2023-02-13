@@ -1,7 +1,8 @@
 query Podcasts($school: String!) {
   podcasts(
     filters: { schools: { slug: { eq: $school } } }
-    sort: "episodes.date:desc"
+    sort: "date:desc"
+    pagination: {limit: -1 }
   ) {
     data {
       id

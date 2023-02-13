@@ -3,13 +3,13 @@
         <img
           class="w-24 shadow-lg rounded-lg pr-2"
           alt="Cover image"
-          v-if="episode.cover"
-          :src="$getStrapiImage(episode.cover.url)"
+          v-if="episode.cover.data"
+          :src="$getStrapiImage(episode.cover.data.attributes.url)"
         />
         <div class="flex flex-col justify-between items-center h-full gap-4 mr-2">
           <p>{{episode.title}}</p>
           <audio controls crossorigin playsinline class="audio w-full shadow-lg rounded-xl mr-2 dark:bg-white">
-            <source v-if="episode.audio" :src="$getStrapiImage(episode.audio.url)" type="audio/mp3" />
+            <source v-if="episode.audio.data" :src="$getStrapiImage(episode.audio.data.attributes.url)" type="audio/mp3" />
           </audio>
         </div>
     </div>

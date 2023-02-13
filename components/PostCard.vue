@@ -2,19 +2,19 @@
     <div class="text-gray-700 dark:text-white dark:bg-gray-700 relative max-w-sm rounded overflow-hidden shadow-lg mb-6">
       <img
         alt="Cover image"
-        v-if="post.image"
+        v-if="post.attributes && post.attributes.image && post.attributes.image.data"
         class="w-full"
-        :src="$getStrapiImage(post.image.url)"
+        :src="$getStrapiImage(post.attributes.image.data.attributes.url)"
       />
       <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2" v-html="post.title" />
+        <div class="font-bold text-xl mb-2" v-html="post.attributes.title" />
         <markdown-it-vue class="text-gray-700 dark:text-gray-50 text-xs" :content="article" />
 
         <Tags :post="post" />
-        <NuxtLink
+        <a
           class="link w-1/2 flex items-center justify-center rounded-md bg-black text-white"
-          :to="'/posts/'+post.slug"
-          >Link</NuxtLink>
+          :href="'/posts/'+post.attributes.slug"
+          >Link</a>
       </div>
     </div>
 
@@ -44,7 +44,7 @@ export default {
   computed: {
     // Search system
     article() {
-      let article = this.post.article || "";
+      let article = this.post.attributes.article || "";
       return article.substring(0,255);
     },
   },

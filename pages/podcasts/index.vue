@@ -53,18 +53,18 @@
       <section class="flex flex-col flex-wrap md:flex-row gap-3 mt-16">
         <div
           class="w-11/12 m-auto"
-          v-for="episode in episodes"
+          v-for="episode in episodes.data"
           :key="episode.id"
-          :episode="episode"
-          v-html="spreakerEmbed(episode)"
+          v-html="spreakerEmbed(episode.attributes)"
         />
       </section>
       <!-- // If no podcast have been found -->
-      <div class v-if="episodes.length == 0">
+      <div class v-if="episodes && episodes.data && episodes.data.length === 0">
         <img
           src="~/assets/images/undraw_page_not_found_su7k.png"
           height="453"
           width="800"
+          alt="404"
         />
         <p>Nessun Episodio trovato</p>
       </div>
@@ -260,31 +260,23 @@ $mq-desktop: "min-width: 630px";
 
 <script>
 // Import the restaurants query
-import podcastsQuery from "~/apollo/queries/podcast/podcasts";
 import lastEpisodesQuery from "~/apollo/queries/episode/lastEpisodes";
 
-import PodcastCard from "~/components/PodcastCard.vue";
 import HeroHeader from "~/components/HeroHeader.vue";
 
 export default {
   components: {
-    PodcastCard,
     HeroHeader,
   },
 
   data() {
     return {
       // Initialize an empty restaurants variabkle
-      podcasts: [],
       episodes: [],
       searchQuery: "",
     };
   },
   apollo: {
-    podcasts: {
-      prefetch: true,
-      query: podcastsQuery,
-    },
     episodes: {
       prefetch: true,
       query: lastEpisodesQuery,
@@ -294,9 +286,6 @@ export default {
     },
   },
   computed: {
-    schoolEpisodes() {
-      return this.episodesFiltred;
-    },
     isDarkTheme() {
       return this.$colorMode.value === "dark";
     },
@@ -309,18 +298,18 @@ export default {
   },
   methods: {
     audioPlayer(episode) {
-      if (episode?.audio?.url) {
+      if (episode?.audio?.data.attributes.url) {
         let audio = `<vue-plyr style="flex:2;" options='{"title":"pippo"}'>
                       <audio controls crossorigin playsinline class="w-full rounded-xl">
                         <source
-                            src="${this.$getStrapiImage(episode.audio.url)}"
+                            src="${this.$getStrapiImage(episode?.audio?.data.attributes.url)}"
                             type="audio/mp3"
                         />
                       </audio>
                     </vue-plyr>`;
         let title = `<h2><a href="/episodes/${episode.slug}">${episode.title}</a></h2>`;
         let img = `<img class="rounded-xl" src="${this.$getStrapiImage(
-          episode.cover.url
+          episode.cover.data.attributes.url
         )}" width="200">`;
         return `<div class="flex flex-row w-full gap-2 justify-items-center items-center">
                   ${img} <div class="flex flex-col" style="flex:2;"> ${
@@ -341,17 +330,12 @@ export default {
           episode.spreaker_limited
         );
         return iframe;
-      } else if (episode.audio?.url) {
+      } else if (episode.audio?.data?.attributes.url) {
         return this.audioPlayer(episode);
       }
       return "";
     },
 
-    getEpisodes(school) {
-      this.episodesFiltred = this.episodes.filter((episode) => {
-        return episode.school.slug === school;
-      });
-    },
   },
 };
 </script>

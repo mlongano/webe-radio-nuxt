@@ -15,10 +15,7 @@
       <div class="relative">
         <input
           class="h-14 w-72 lg:w-96 pr-8 pl-5 rounded-full z-0 dark:text-gray-700 shadow dark:shadow-inner focus:outline-none"
-          v-model="searchQuery"
-          type="search"
-          placeholder="Cerca..."
-        />
+          v-model="searchQuery" type="search" placeholder="Cerca..." />
         <div class="absolute top-4 right-3">
           <i class="fa fa-search text-gray-400 z-20 hover:text-gray-500"></i>
         </div>
@@ -30,11 +27,7 @@
     </section>
     <!-- // If no podcast have been found -->
     <div class="" v-if="filteredList.length == 0">
-      <img
-        src="~/assets/images/undraw_page_not_found_su7k.png"
-        height="453"
-        width="800"
-      />
+      <img src="~/assets/images/undraw_page_not_found_su7k.png" height="453" width="800" alt="No Podcast found" />
       <p>No Podcast found</p>
     </div>
   </div>
@@ -43,6 +36,7 @@
 <style lang="postcss" scoped>
 .badge {
   @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700;
+
   &:hover {
     @apply bg-gray-300;
   }
@@ -63,13 +57,6 @@ $mq-desktop: "min-width: 630px";
   --bg-podcast-5: "~/assets/images/microfono-pieno-nero.png";
 }
 
-.badge {
-  @apply inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700;
-  &:hover {
-    @apply bg-gray-300;
-  }
-}
-
 .accordion {
   @apply flex flex-col w-full h-80 md:h-128 lg:h-176 mx-auto;
 }
@@ -79,6 +66,7 @@ $mq-desktop: "min-width: 630px";
   width: 100%;
   height: 100%;
   overflow: hidden;
+
   &:before {
     content: "";
     position: absolute;
@@ -88,6 +76,7 @@ $mq-desktop: "min-width: 630px";
     background-size: cover;
     z-index: -1;
   }
+
   &:after {
     content: "";
     position: absolute;
@@ -98,6 +87,7 @@ $mq-desktop: "min-width: 630px";
     height: 100%;
     opacity: 0.8;
   }
+
   .accordion-text {
     position: relative;
     font-size: 6vw;
@@ -111,6 +101,7 @@ $mq-desktop: "min-width: 630px";
   width: 100%;
   height: 100%;
   overflow: hidden;
+
   &:before {
     content: "";
     position: absolute;
@@ -120,6 +111,7 @@ $mq-desktop: "min-width: 630px";
     background-size: cover;
     z-index: -1;
   }
+
   &:after {
     content: "";
     position: absolute;
@@ -131,6 +123,7 @@ $mq-desktop: "min-width: 630px";
     opacity: 0.8;
     transition: opacity 0.2s;
   }
+
   .hero-text {
     padding-top: 4em;
     font-size: 4rem;
@@ -144,12 +137,9 @@ $mq-desktop: "min-width: 630px";
     background-repeat: no-repeat;
     background-size: cover;
   }
+
   &:after {
-    @apply bg-gradient-to-br
-      dark:from-blue-800
-      dark:to-blue-400
-      from-blue-400
-      to-blue-100;
+    @apply bg-gradient-to-br dark:from-blue-800 dark:to-blue-400 from-blue-400 to-blue-100;
   }
 }
 
@@ -157,9 +147,11 @@ $mq-desktop: "min-width: 630px";
   &:before {
     background-image: url("~/assets/images/larosabiancaPodcast.jpg");
   }
+
   &:after {
     @apply bg-gradient-to-br from-purple-400 to-purple-100 dark:from-purple-800 dark:to-purple-400;
   }
+
   .accordion-text {
     @media (min-width: 768px) {
       top: -2vh;
@@ -171,6 +163,7 @@ $mq-desktop: "min-width: 630px";
   &:before {
     background-image: url("~/assets/images/tambosiPodcast.jpg");
   }
+
   &:after {
     @apply bg-gradient-to-br from-gray-400 to-gray-100 dark:from-gray-800 dark:to-gray-400;
   }
@@ -179,6 +172,7 @@ $mq-desktop: "min-width: 630px";
 <script>
 // Import the restaurants query
 import podcastsQuery from "~/apollo/queries/podcast/schoolPodcasts";
+import schoolsQuery from "~/apollo/queries/school/schools";
 import PodcastCard from "~/components/PodcastCard.vue";
 
 export default {
@@ -186,46 +180,70 @@ export default {
     PodcastCard,
   },
 
-  data() {
+  data () {
     return {
       // Initialize an empty restaurants variabkle
       podcasts: [],
+      schools: [],
       searchQuery: "",
-      schoolsBackground: {
-        "itt-marconi": "bg-marconi-podcast",
-        "la-rosa-bianca": "bg-larosabianca-podcast",
-        tambosi: "bg-tambosi-podcast",
-      },
-      schoolsName: {
-        "itt-marconi": "Istituto Tecnico Tecnologico G. Marconi - Rovereto",
-        "la-rosa-bianca": 'Istituto di Istruzione "La Rosa Bianca"',
-        tambosi: 'Istituto Tecnico Economico "A. Tambosi"',
-      },
     };
   },
   apollo: {
     podcasts: {
       prefetch: true,
       query: podcastsQuery,
-      variables() {
+      variables () {
         return { school: this.$route.params.slug };
       },
     },
+    schools: {
+      prefetch: true,
+      query: schoolsQuery,
+    },
   },
   computed: {
-    // Search system
-    filteredList() {
-      return this.podcasts.filter((podcast) => {
-        return podcast.title.toLowerCase().includes(this.searchQuery.toLowerCase());
-      });
+    schoolsName () {
+      return this.schools?.data.reduce( ( acc, school ) => {
+        acc[ school.attributes.slug ] = school.attributes.name;
+        return acc;
+      }, {} );
     },
-    school() {
+    schoolsBackground () {
+      return this.schools?.data.reduce( ( acc, school ) => {
+        acc[ school.attributes.slug ] = school.attributes.background_class;
+        return acc;
+      }, {} );
+    },
+
+    // Search system
+    filteredList () {
+      // return podcasts filtered by searchQuery and sorted by the date of the last episode published
+      return this.podcasts?.data
+        .filter(
+          ( podcast ) => {
+            return podcast.attributes.title.toLowerCase().includes( this.searchQuery.toLowerCase() );
+          } )
+        .sort(
+          ( podcast_a, podcast_b ) => {
+            return podcast_a.attributes.episodes?.data.sort(
+              ( episode_a, episode_b ) => {
+                return new Date( episode_b.attributes.date ) - new Date( episode_a.attributes.date );
+              }
+            )[ 0 ]?.attributes.episode_number
+              - podcast_b.attributes.episodes.data.sort(
+                ( ea, eb ) => {
+                  return new Date( eb.attributes.date ) - new Date( ea.attributes.date );
+                }
+              )[ 0 ]?.attributes.episode_number;
+          } );
+    },
+    school () {
       return (
-        this.podcasts[0]?.school?.name || this.schoolsName[this.$route.params.slug] || ""
+        this.schoolsName[ this.$route.params.slug ] || ""
       );
     },
-    schoolBackground() {
-      return this.schoolsBackground[this.$route.params.slug] || "";
+    schoolBackground () {
+      return this.schoolsBackground[ this.$route.params.slug ] || "";
     },
   },
 };
