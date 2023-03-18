@@ -120,7 +120,7 @@ export default {
       return this.ascoltatori;
     },
     songSrc() {
-      return "https://stream.webe.radio/live";
+      return `${process.env.AUDIO_URL}/live`;
     },
     themeMode() {
       return this.$colorMode.value === "dark" ? "dark" : "light";
@@ -129,7 +129,7 @@ export default {
   asyncComputed: {
     coverArt: {
       async get() {
-        const query = `https://musicbrainz.org/ws/2/recording?fmt=json&query=recording:%22${this.title}%22%20AND%20release:%22${this.albumName}%22%20AND%20artist:%22${this.artistName}%22`;
+        const query = `${process.env.MUSICBRAINZ_URL}/recording?fmt=json&query=recording:%22${this.title}%22%20AND%20release:%22${this.albumName}%22%20AND%20artist:%22${this.artistName}%22`;
         let response = await fetch(query);
         if (!response.ok) {
           return this.defaultCover;
@@ -153,7 +153,7 @@ export default {
           let urls = recordings
             .map((recording) => recording.releases)
             .flat()
-            .map((release) => `https://coverartarchive.org/release/${release.id}/front`);
+            .map((release) => `${process.env.COVERART_URL}/release/${release.id}/front`);
           //console.log(urls.slice(0, 3));
           let response = null;
           do {
@@ -176,7 +176,7 @@ export default {
     },
     coverArtDiscogs: {
       async get() {
-        const query = `https://api.discogs.com/database/search?q=${this.artistName}%20-%20${this.title}%20-%20${this.albumName}&type=release&per_page=1`;
+        const query = `${process.env.DISCOGS_API_URL}/search?q=${this.artistName}%20-%20${this.title}%20-%20${this.albumName}&type=release&per_page=1`;
         let response = await fetch(query, {
           headers: {
             Authorization: `Discogs key=${process.env.DISCOGS_KEY}, secret=${process.env.DISCOGS_SECRET}`,
@@ -250,7 +250,7 @@ export default {
 
     async fetchSongMetadata() {
       //const response = await fetch("http://10.0.3.11:8000/status-json.xsl");
-      const response = await fetch("https://stream.webe.radio/status-json.xsl");
+      const response = await fetch(`${process.env.AUDIO_URL}/status-json.xsl`);
       const data = await response.json();
       const metadataList = data?.icestats?.source?.title?.split(" - ");
       const metadataProps = ["titolo", "artista", "anno", "album"];
