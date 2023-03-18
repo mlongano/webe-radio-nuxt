@@ -2,7 +2,7 @@
   <div class="w-screen">
     <main
       class="min-h-full pt-8 pb-8 bg-gradient-to-br dark:from-purple-800 dark:to-purple-400 from-purple-400 to-purple-100;">
-      <HeroHeader h1="WeBE" h2="Radio" imgsrc="ragazza-natalizia.png">
+      <HeroHeader h1="WeBE" h2="Radio" imgsrc="ragazza-cuffie-microfono-sorride.png">
       <!--
         <div class="absolute top-[130px] right-0 bg-black opacity-80">
           <img class="max-h-80" src="~/assets/images/palinsesto.png" alt="Palinsesto" />
@@ -75,6 +75,9 @@
           </a>
           <a href="/schools/ite-tambosi">
             <img class="img-scuole" src="~/assets/images/tambosiQuadrato.jpg" alt="Tambosi" />
+          </a>
+          <a href="/">
+            <img class="img-scuole" src="~/assets/images/donmilaniQuadrato.jpg" alt="Don Milani" />
           </a>
         </div>
         <img v-if="isDarkTheme" class="mx-auto mt-4 mb-4" src="~/assets/images/loghiBgBlack.png" alt="loghi" />
